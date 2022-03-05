@@ -26,3 +26,21 @@ model = BCM(outputs=1000, num_epochs=10, optimizer=Adam(lr=4e-2), interaction_st
             activation='Relu', batch_size=10000)
 model.fit(x_train, y_train)
 
+#PREDICTION
+
+def predict(X,y,x_predict):
+    predict = model.predict(x_test.values[x_predict].reshape(1, -1), y=np.zeros_like(y_test[x_predict].reshape(1, -1)))
+
+# select the neuron connection   with the highest response
+    highest_response = model.weights[np.argmax(predict)][:28*28].reshape(28, 28)
+
+    nc = np.amax(np.abs(model.weights))
+
+    fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(12, 12))
+    ax1.set_title('Image from the MNIST dataset:{:d}'.format(y_test[x_predict].argmax()))
+    ax1.imshow(x_test.values[x_predict].reshape(28, 28), cmap='gray'); ax1.axis('off')
+
+    ax2.set_title('Prediction using BCM')
+    ax2.imshow(highest_response, cmap='bwr', vmin=-nc, vmax=nc); ax2.axis('off')
+
+predict(x_test, y_test, x_predict=0)
