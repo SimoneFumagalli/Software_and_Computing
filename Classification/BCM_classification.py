@@ -19,3 +19,10 @@ y_reshape = y_int.values.reshape(-1,1)
 y_transform = OneHotEncoder(sparse=False).fit_transform(y_reshape)
 
 x_train, x_test, y_train, y_test = train_test_split(X, y_transform, test_size=1./8, random_state=42)
+
+#FITTING
+model = BCM(outputs=1000, num_epochs=10, optimizer=Adam(lr=4e-2), interaction_strength=0.,
+            weights_init=GlorotNormal(),
+            activation='Relu', batch_size=10000)
+model.fit(x_train, y_train)
+
