@@ -44,3 +44,18 @@ def predict(X,y,x_predict):
     ax2.imshow(highest_response, cmap='bwr', vmin=-nc, vmax=nc); ax2.axis('off')
 
 predict(x_test, y_test, x_predict=0)
+
+######## EVALUATION OF THE ACCURACY
+
+def testing(x,y):
+
+    testing = model.predict(x_test, y_test)
+
+    y_values = [model.weights[np.argmax(x)][28*28:].argmax() for x in testing]
+
+    y_true = y_test.argmax(axis=1)
+    y_pred = np.asarray(y_values)
+
+    print('Prediction Accuracy on the test set: {:.3f}'.format(accuracy_score(y_true, y_pred)))
+
+testing(x_test, y_test)
