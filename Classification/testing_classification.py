@@ -24,7 +24,7 @@ def variables(i):
     x_train, x_test, y_train, y_test = \
     train_test_split(X_1, y_transform, test_size=1./8, random_state=42)
     r = [x_train, y_train, x_test, y_test]
-    return r[i], len(r[i])
+    return len(r[i])
     
 
 def test_x_train():
