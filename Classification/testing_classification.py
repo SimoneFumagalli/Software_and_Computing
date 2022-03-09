@@ -10,6 +10,7 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.datasets import fetch_openml
 from sklearn.model_selection import train_test_split
 
+
 X, y = fetch_openml(name='mnist_784', version=1, data_id=None, return_X_y=True)
 
 def variables(i):

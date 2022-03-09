@@ -59,6 +59,7 @@ def predict(X,y,x_predict):
         
             ax2.set_title('Prediction using BCM:{:d}'.format(predicted_label[0]))
             ax2.imshow(highest_response, cmap='bwr', vmin=-nc, vmax=nc); ax2.axis('off')
+            
             break
         
     else:
