@@ -38,6 +38,7 @@ def test_x_test():
 
 def test_y_test():
     assert variables(3) == len(X)*(1/8)
-    
+
+
 
 
