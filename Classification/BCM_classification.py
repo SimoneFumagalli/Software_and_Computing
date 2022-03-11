@@ -148,7 +148,7 @@ def accuracy(X,y,model):
     
     Returns
     -------
-    It returns the types and lenghts of the variable for testing purpose.
+    It returns the  lenghts of the variable for testing purpose.
     
     """
     accuracy = model.predict(X, y)
@@ -160,8 +160,7 @@ def accuracy(X,y,model):
     
     y_pred = np.asarray(y_values)
     
-    types = [type(y_values), type(y_true), type(y_pred)]
     length = [len(y_values), len(y_true), len(y_pred)]
     print('Prediction Accuracy on the test set: {:.3f}'.format(accuracy_score(y_true, y_pred)))
-    return types, length
+    return length
     

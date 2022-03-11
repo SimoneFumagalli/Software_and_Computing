@@ -6,7 +6,7 @@ Created on Wed Mar  9 12:42:26 2022
 """
 from BCM_classification import variables, fitting, predict, accuracy
 from sklearn.datasets import fetch_openml
-import numpy as np
+import numpy
 
 
 X, y = fetch_openml(name='mnist_784', version=1, data_id=None, return_X_y=True)
@@ -54,16 +54,13 @@ def test_predict():
 
 def test_accuracy():
     """
-    It tests the types and lengths of the variables used in the accuracy function.
+    It tests the lengths of the variables used in the accuracy function.
    
     """
-    acc = accuracy(x_test,y_test,model)
-    y_types = acc[0] #composed by the types of y_values, y_true, y_pred
-    #assert isinstance(y_types[0], list)
-    assert isinstance(y_types[1], np.ndarray)
-    assert isinstance(y_types[2], np.ndarray)
-    y_length = acc[1] #composed by the lenghts of y_values, y_true, y_pred
-    assert y_length[0] == y_length[1] == y_length[2]
+    acc = accuracy(x_test,y_test,model) 
+    #acc is composed by the lenghts of y_values, y_true, y_pred
+    assert acc[0] == acc[1] == acc[2] == len(y_test) 
+    
 
 
 
