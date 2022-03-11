@@ -124,7 +124,7 @@ def predict(X, y, model, x_predict):
     
         ax2.set_title('Prediction using BCM:{:d}'.format(predicted_label[0]))
         ax2.imshow(highest_response, cmap='bwr', vmin=-nc, vmax=nc); ax2.axis('off')
-    
+        return len(labels)
     else:
         print("Error: x_predict must be an integer number lower than", len(y)-1,\
           ". Please, enter a valid number next time")
@@ -160,6 +160,8 @@ def accuracy(X,y,model):
     
     y_pred = np.asarray(y_values)
     
-    values = [y_values, y_true, y_pred]
-    return values
+    types = [type(y_values), type(y_true), type(y_pred)]
+    length = [len(y_values), len(y_true), len(y_pred)]
     print('Prediction Accuracy on the test set: {:.3f}'.format(accuracy_score(y_true, y_pred)))
+    return types, length
+    

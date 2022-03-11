@@ -47,7 +47,7 @@ def test_predict():
     if type(x_predict) == int and x_predict < len(y_test):
         assert type(x_predict) == int
         assert x_predict < len(y_test)
-        assert len(labels) == model.outputs
+        assert labels == model.outputs
         
     else:
         assert type(x_predict) == float or str or x_predict > len(y_test)
@@ -59,11 +59,11 @@ def test_accuracy():
     """
     acc = accuracy(x_test,y_test,model)
     y_types = acc[0] #composed by the types of y_values, y_true, y_pred
-    assert isinstance(y_types[0], list)
+    #assert isinstance(y_types[0], list)
     assert isinstance(y_types[1], np.ndarray)
     assert isinstance(y_types[2], np.ndarray)
     y_length = acc[1] #composed by the lenghts of y_values, y_true, y_pred
-    assert len(y_length[0]) == len(y_length[1]) == len(y_length[2])
+    assert y_length[0] == y_length[1] == y_length[2]
 
 
 
