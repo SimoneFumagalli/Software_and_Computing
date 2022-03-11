@@ -6,12 +6,13 @@ Created on Wed Mar  9 12:42:26 2022
 """
 from plasticity.model import BCM
 from plasticity.model.optimizer import Adam
-from plasticity.model.weights import GlorotNormal, Normal
+from plasticity.model.weights import GlorotNormal
 import numpy as np
 import pylab as plt
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.datasets import fetch_openml
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 import pandas as pd
 
 X, y = fetch_openml(name='mnist_784', version=1, data_id=None, return_X_y=True)
@@ -43,6 +44,10 @@ model = BCM(outputs=1000, num_epochs=10, optimizer=Adam(lr=4e-2),
     
 model.fit(x_train, y_train)
 
+def test_model():
+    assert isinstance(model.outputs, int)
+    assert isinstance(model.num_epochs, int)
+    assert isinstance(model.batch_size, int)
 
 def test_predict():
     x_predict=0
@@ -58,20 +63,31 @@ def test_predict():
         labels = model.weights[:, 28*28:].argmax(axis=1)
         
         #sorting the label with the highest response
-        predicted_label = sorted(zip(predict.ravel(), labels), \
-                                 key=lambda x : x[0], reverse=True)[:1]
-            
-        predicted_label = [x[1] for x in predicted_label]
+        
         nc = np.amax(np.abs(model.weights))
         
-        assert len(predict) == 1
-        assert len(highest_response) == 28
+        
         assert type(x_predict) == int
+        assert type(nc) == np.float64
+        assert len(labels) == model.outputs
+        
         
     else:
         assert type(x_predict) == float or str
-        print("Error: x_predict must be an integer number lower than", len(y_test)-1,\
-          ". Please, enter a valid number next time")
+
+
+def test_accuracy():
+    testing = model.predict(x_test, y_test)
+
+    y_values = [model.weights[np.argmax(x)][28*28:].argmax() for x in testing]
+
+    y_true = y_test.argmax(axis=1)
+    y_pred = np.asarray(y_values)
+    
+    assert isinstance(y_values, list)
+    assert isinstance(y_true, np.ndarray)
+    assert isinstance(y_pred, np.ndarray)
+    assert len(y_values) == len(y_true) == len(y_test)
 
 
 

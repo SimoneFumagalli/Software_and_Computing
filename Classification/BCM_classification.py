@@ -1,12 +1,15 @@
 from plasticity.model import BCM
 from plasticity.model.optimizer import Adam
 from plasticity.model.weights import GlorotNormal
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import fetch_openml
+from sklearn.preprocessing import OneHotEncoder
 import numpy as np
 import pylab as plt
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.datasets import fetch_openml
+
+
 from sklearn.metrics import accuracy_score
-from sklearn.model_selection import train_test_split
+
 
 X, y = fetch_openml(name='mnist_784', version=1, data_id=None, return_X_y=True)
 
