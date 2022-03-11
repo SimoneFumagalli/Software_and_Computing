@@ -63,7 +63,7 @@ def fitting(X,y):
                 weights_init=GlorotNormal(),
                 activation='Relu', batch_size=10000)
     
-    model.fit(X,y)
+    model.fit(X,y) #training of the model
     return model
 
 #PREDICTION
@@ -71,7 +71,8 @@ def fitting(X,y):
 def predict(X, y, model, x_predict):
     """
     This method uses the model to make predictions on a new set, the test set.
-
+    It outputs the raw images and the predicted one.
+    
     Parameters
     ----------
     X : Dataframe
@@ -84,7 +85,11 @@ def predict(X, y, model, x_predict):
     
     x_predict : int
                 Number corresponding to the MNIST image that must be shown.
-
+    
+    Returns
+    -------
+    It returns the predicted labels. It is useful for testing purpose.
+    
     """
     
     if type(x_predict) == int and x_predict < len(y):
@@ -134,12 +139,21 @@ def accuracy(X,y,model):
         List containing the labels in test set.
     
     model : trained model used to make predictions.
+    
+    Returns
+    -------
+    It returns the types and lenghts of the variable for testing purpose.
+    
     """
     accuracy = model.predict(X, y)
-
+    
+    # prediction of the labels
     y_values = [model.weights[np.argmax(x)][28*28:].argmax() for x in accuracy]
 
     y_true = y.argmax(axis=1)
+    
     y_pred = np.asarray(y_values)
-
+    
+    values = [y_values, y_true, y_pred]
+    return values
     print('Prediction Accuracy on the test set: {:.3f}'.format(accuracy_score(y_true, y_pred)))
