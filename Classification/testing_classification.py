@@ -4,7 +4,7 @@ Created on Wed Mar  9 12:42:26 2022
 
 @author: Simone Fumagalli
 """
-from Fai_qualcosa_di_strano import variables, fitting, predict, accuracy
+from BCM_classification import variables, fitting, predict, accuracy
 from sklearn.datasets import fetch_openml
 import numpy as np
 
