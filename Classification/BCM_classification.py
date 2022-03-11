@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Mar  9 12:42:26 2022
+
+@author: Simone Fumagalli
+"""
 from plasticity.model import BCM
 from plasticity.model.optimizer import Adam
 from plasticity.model.weights import GlorotNormal
