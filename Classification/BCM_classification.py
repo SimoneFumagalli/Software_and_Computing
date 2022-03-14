@@ -72,7 +72,7 @@ def fitting(X,y):
     model.fit(X,y) #training of the model
     return model
 
-#PREDICTION
+
 
 def predict(X, y, model, x_predict):
     """
@@ -131,7 +131,6 @@ def predict(X, y, model, x_predict):
 
 
 
-######## EVALUATION OF THE ACCURACY
 
 def accuracy(X,y,model):
     """
