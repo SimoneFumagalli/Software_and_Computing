@@ -34,6 +34,108 @@ For further details, look at this site [here](http://scholarpedia.org/article/BC
 
 ## Classification
 
+In order to work with the BCM model, the plasticity package must be downloaded at this [link](https://github.com/Nico-Curti/plasticity), created by Nico Curti et al. on GitHub. At this link, information about the download of the plasticity package, implementation and parameters value can be found.
+
+Once the installation of the Python version of the Plasticity package has been performed, download also the Classification folder, in which are contained the BCM_Classification, testing and simulation files.
+
+In the next paragraphs, just an explanation of the code is shown. If interested in how to use these scripts and to see some outputs, go to `Simulation`. 
+
+### BCM_Classification
+
+This script contains the functions useful to classify the MNIST dataset.
+* At first, the variable function has been constructed in order to generate the inputs, X and y, and to splitting them into two sets of different length, the train and test. The X corresponds to the image with the number drawn, while the y represents the label corresponding to the image.
+
+```python
+def variables(X,y, i):
+    X_1=X*(1./255) # Normalization of the X inputs in range [0,1]
+    
+    #Transformation of the y vector
+    y_int = y.astype('int')
+    y_reshape = y_int.values.reshape(-1,1)
+    y_transform = OneHotEncoder(sparse=False).fit_transform(y_reshape)
+    
+    #Splitting of the variables in training and test sets
+    x_train, x_test, y_train, y_test = \
+    train_test_split(X_1, y_transform, test_size=1./8, random_state=42)
+    variable = [x_train, y_train, x_test, y_test]
+    return variable[i]
+```
+
+* The fitting function implements the BCM model and it is trained using the train set previously created.
+
+```python
+def fitting(X,y):
+    model = BCM(outputs=100, num_epochs=10, optimizer=Adam(lr=1e-3), 
+                interaction_strength=0.,
+                weights_init=HeNormal(),
+                activation='Relu', batch_size=100)
+    
+    model.fit(X,y) #training of the model
+    return model
+```
+
+According to the parameters chosen, the fitting will take some times to reach the end. The value's parameters used here are just an example.
+
+* The predict function is constructed to control if the input parameter, x_predict, is chosen correctly. Indeed, this parameter must respect some conditions since it represents the image for which the model should represent its prediction. After the prediction, the highest response has been recorded and coupled to the best label, representing the number corresponding to the image. The, the plot showing the raw and predicting images is show, reporting also the already known and predicted labels.
+
+```python
+def predict(X, y, model, x_predict):
+    if type(x_predict) == int and x_predict < len(y):
+        predict = model.predict(X.values[x_predict].reshape(1, -1), \
+                                y=np.zeros_like(y[x_predict].reshape(1, -1)))
+    
+        # select the neuron connection with the highest response
+        highest_response = model.weights[np.argmax(predict)][:28*28].reshape(28, 28)
+        
+        # collecting the predicted labels
+        labels = model.weights[:, 28*28:].argmax(axis=1)
+        
+        #sorting the label with the highest response
+        predicted_label = sorted(zip(predict.ravel(), labels), \
+                                 key=lambda x : x[0], reverse=True)[:1]
+            
+        predicted_label = [x[1] for x in predicted_label]
+        
+        nc = np.amax(np.abs(model.weights))
+        
+        #plotting
+
+        fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(12, 12))
+        ax1.set_title('Image from the MNIST dataset:{:d}'.format(y[x_predict].argmax()))
+        ax1.imshow(X.values[x_predict].reshape(28, 28), cmap='gray'); ax1.axis('off')
+    
+        ax2.set_title('Prediction using BCM:{:d}'.format(predicted_label[0]))
+        ax2.imshow(highest_response, cmap='bwr', vmin=-nc, vmax=nc); ax2.axis('off')
+        return len(labels)
+    else:
+        print("Error: x_predict must be an integer number lower than", len(y)-1,\
+          ". Please, enter a valid number next time")
+```
+
+* In the last part of this script, a function for testing the accuracy of the prediction has been defined.
+
+```python
+
+def accuracy(X,y,model):
+    accuracy = model.predict(X, y)
+    
+    # prediction of the labels
+    y_values = [model.weights[np.argmax(x)][28*28:].argmax() for x in accuracy]
+
+    y_true = y.argmax(axis=1)
+    
+    y_pred = np.asarray(y_values)
+    
+    length = [len(y_values), len(y_true), len(y_pred)]
+    print('Prediction Accuracy on the test set: {:.3f}'.format(accuracy_score(y_true, y_pred)))
+    return length
+```
+
+
+For the predict and testing functions, the `return` elements are useful for testing purposes.
+
+### Simulation
+
 
 
 

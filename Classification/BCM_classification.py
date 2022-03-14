@@ -6,7 +6,7 @@ Created on Wed Mar  9 12:42:26 2022
 """
 from plasticity.model import BCM
 from plasticity.model.optimizer import Adam
-from plasticity.model.weights import GlorotNormal
+from plasticity.model.weights import HeNormal
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
 import numpy as np
@@ -64,10 +64,10 @@ def fitting(X,y):
     -------
     The trained model.
     """
-    model = BCM(outputs=1000, num_epochs=10, optimizer=Adam(lr=4e-2), 
+    model = BCM(outputs=100, num_epochs=10, optimizer=Adam(lr=1e-3), 
                 interaction_strength=0.,
-                weights_init=GlorotNormal(),
-                activation='Relu', batch_size=10000)
+                weights_init=HeNormal(),
+                activation='Relu', batch_size=100)
     
     model.fit(X,y) #training of the model
     return model
