@@ -19,7 +19,7 @@ This theory of synaptic plasticity is based on three postulates:
 * The modification threshold, indicated with <img src="https://latex.codecogs.com/png.image?\dpi{110}\theta" title="https://latex.codecogs.com/png.image?\dpi{110}\theta" /> and corresponding to a variation higher than zero, is itself a superlinear function of the history of postsynaptic activity <img src="https://latex.codecogs.com/gif.image?\small&space;\dpi{110}y" title="https://latex.codecogs.com/gif.image?\small \dpi{110}y" />.
 
 
-### Mathematical Formulation od BCM
+### Mathematical Formulation of BCM
 
 The original BCM equation is defined by:
 
