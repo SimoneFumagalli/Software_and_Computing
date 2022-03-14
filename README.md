@@ -1,6 +1,6 @@
 # Classification and Inpainting using BCM
 
-* [Theory] (#theory)
+* [Theory](#theory)
 
 
 ## Theory
