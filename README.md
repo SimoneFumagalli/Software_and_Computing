@@ -12,7 +12,6 @@ This theory of synaptic plasticity is based on three postulates:
 * This change is also proportional to a non-monotonic function <img src="https://latex.codecogs.com/gif.image?\small&space;\dpi{110}\phi" title="https://latex.codecogs.com/gif.image?\small \dpi{110}\phi" /> of the postsynaptic activity y. It has two different behaviours according to the postsynaptic activity: it decreses for low y and increases for higher y;
 * The modification threshold, indicated with <img src="https://latex.codecogs.com/png.image?\dpi{110}\theta" title="https://latex.codecogs.com/png.image?\dpi{110}\theta" /> and corresponding to a variation higher than zero, is itself a superlinear function of the history of postsynaptic activity y.
 
-<img src="https://latex.codecogs.com/gif.image?\small&space;\dpi{110}\phi" title="https://latex.codecogs.com/gif.image?\small \dpi{110}\phi" />
 
 ### Mathematical Formulation od BCM
 
