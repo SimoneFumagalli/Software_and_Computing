@@ -1,11 +1,17 @@
 # Classification and Inpainting using BCM
 
 * [Theory](#theory)
+* [Classification](#classification)
+* [References](#references)
 
 
 ## Theory
 
 The model at the basis of this work is called BCM (Bienenstock, Cooper and Munro) theory that refers to the synaptic modification first proposed in 1982.
+The BCM theory inserts inside the synaptic plasticity field, that is a process in which the synapses change their efficacy according to their previous acitivities.
+Starting from this notion, Donald Hebb proposed a form of synaptic plasticity driven by the pre- and postsynaptic activity.
+He postulated that a repeated and persistent stimulation of a postsynaptic cell from a presynaptic ones increases its strength.
+
 This theory of synaptic plasticity is based on three postulates:
 
 * The change in synaptic weights  <img src="https://latex.codecogs.com/gif.image?\small&space;\dpi{110}dw_i/dt" title="https://latex.codecogs.com/gif.image?\small \dpi{110}dw_i/dt" />  is proportional to presynaptic activity <img src="https://latex.codecogs.com/gif.image?\small&space;\dpi{110}x_i" title="https://latex.codecogs.com/gif.image?\small \dpi{110}x_i" />;
@@ -23,4 +29,14 @@ while a more recent formula has been drawn from Law and Cooper in 1994:
 
 <img src="https://latex.codecogs.com/png.image?\dpi{110}y&space;=&space;\sigma\Biggl(\sum_{i}w_ix_i\Biggl),&space;\\\\\indent&space;\frac{\mathrm{d}w_i}{\mathrm{d}&space;t}&space;=&space;\frac{y(y&space;-&space;\theta)x_i}{\theta},&space;\\\\\indent&space;\theta&space;=&space;E[y^{2}]&space;" title="https://latex.codecogs.com/png.image?\dpi{110}y = \sigma\Biggl(\sum_{i}w_ix_i\Biggl), \\\\\indent \frac{\mathrm{d}w_i}{\mathrm{d} t} = \frac{y(y - \theta)x_i}{\theta}, \\\\\indent \theta = E[y^{2}] " />
 
-For further details, look at this site [here](http://scholarpedia.org/article/BCM)
+For further details, look at this site [here](http://scholarpedia.org/article/BCM).
+
+## Classification
+
+## References
+
+* Blais, B. S., & Cooper, L. (2008). BCM theory. Scholarpedia, 3(3), 1570. (http://scholarpedia.org/article/BCM)
+
+* Jedlicka, P. (2002). Synaptic plasticity, metaplasticity and BCM theory. Bratislavské lekárske listy, 103(4/5), 137-143.
+
+* https://github.com/Nico-Curti/plasticity
