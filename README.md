@@ -10,7 +10,7 @@
 The model at the basis of this work is called BCM (Bienenstock, Cooper and Munro) theory that refers to the synaptic modification first proposed in 1982.
 The BCM theory inserts inside the synaptic plasticity field, that is a process in which the synapses change their efficacy according to their previous acitivities.
 Starting from this notion, Donald Hebb proposed a form of synaptic plasticity driven by the pre- and postsynaptic activity.
-He postulated that a repeated and persistent stimulation of a postsynaptic cell from a presynaptic ones increases its strength.
+He postulated that a repeated and persistent stimulation of a postsynaptic cell from a presynaptic ones increases its strength, known as Hebb's Rule.
 
 This theory of synaptic plasticity is based on three postulates:
 
@@ -18,6 +18,7 @@ This theory of synaptic plasticity is based on three postulates:
 * This change is also proportional to a non-monotonic function <img src="https://latex.codecogs.com/gif.image?\small&space;\dpi{110}\phi" title="https://latex.codecogs.com/gif.image?\small \dpi{110}\phi" /> of the postsynaptic activity <img src="https://latex.codecogs.com/gif.image?\small&space;\dpi{110}y" title="https://latex.codecogs.com/gif.image?\small \dpi{110}y" />. It has two different behaviours according to the postsynaptic activity: it decreses for low y and increases for higher <img src="https://latex.codecogs.com/gif.image?\small&space;\dpi{110}y" title="https://latex.codecogs.com/gif.image?\small \dpi{110}y" />;
 * The modification threshold, indicated with <img src="https://latex.codecogs.com/png.image?\dpi{110}\theta" title="https://latex.codecogs.com/png.image?\dpi{110}\theta" /> and corresponding to a variation higher than zero, is itself a superlinear function of the history of postsynaptic activity <img src="https://latex.codecogs.com/gif.image?\small&space;\dpi{110}y" title="https://latex.codecogs.com/gif.image?\small \dpi{110}y" />.
 
+More generally, BCM model proposes a sliding threshold for long-term potentiation (LTP) and long-term depression (LTD) induction, stating that synaptic plasticity is stabilized by a dynamic adaptation of the time-averaged post-synaptic activity.
 
 ### Mathematical Formulation of BCM
 
@@ -32,6 +33,30 @@ while a more recent formula has been drawn from Law and Cooper in 1994:
 For further details, look at this site [here](http://scholarpedia.org/article/BCM).
 
 ## Classification
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## References
 
