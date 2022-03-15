@@ -161,11 +161,7 @@ At this point, the model is created and fitted by usign the `fitting` function a
 model = fitting(x_train, y_train)
 ```
 
-<a href="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/Simulation_images/Fitting_Epochs.png">
-  <div class="image">
-    <img src="Simulation_images/Fitting_Epochs.png" >
-  </div>
-</a>
+<img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/Simulation_images/Fitting_Epochs.png">
 
 Now, once the model has been trained, the prediction and the accuracy test can be performed by using the `x_test` and `y_test` parameters. With `x_predict` is indicated the image that the model must be able to predict.  
 
