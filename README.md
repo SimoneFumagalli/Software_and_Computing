@@ -184,7 +184,7 @@ which means that the `GlorotNormal` function must be imported in `BCM_Classifica
 
 By using this setting, the output of predict and testing functions are the following:
 <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/Simulation_images/Plot_raw_predict.png" 
-height = "300" width = "300">
+height = "300" width = "500">
 <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/Simulation_images/Accuracy_test.png" 
 height = "50" width = "300">
 
