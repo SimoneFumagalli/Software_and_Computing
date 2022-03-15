@@ -135,7 +135,7 @@ def accuracy(X,y,model):
 For the predict and testing functions, the `return` elements are useful for testing purposes.
 
 ### Simulation
- The ``simulation` script contains the main code of the project, containing the functions of the `BCM_Classification` script and showing the results obtained.
+ The `simulation` script contains the main code of the project, containing the functions of the `BCM_Classification` script and showing the results obtained.
  At first, the `BCM_Classification` must be imported, together with the functions that it contains.
 Even the MNIST dataset must be imported and so the `fetch_openml` is imported by `sklearn.datasets` 
 
@@ -183,6 +183,13 @@ model = BCM(outputs=1000, num_epochs=10, optimizer=Adam(lr=4e-2),
 which means that the `GlorotNormal` function must be imported in `BCM_Classification`.
 
 By using this setting, the output of predict and testing functions are the following:
+
+<img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/Simulation_images/Plot_raw_predict.png" 
+height = "400" width = "400">
+
+<img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/Simulation_images/Accuracy_test.png" 
+height = "300" width = "300">
+
 
 
 
