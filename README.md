@@ -190,7 +190,9 @@ height = "300" width = "500">
 <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/Simulation_images/Accuracy_test.png" 
 height = "50" width = "300">
 
+### Testing
 
+In the last file, `testing`, the parameters are controlled to be in the right form such as required by the functions. 
 
 
 
