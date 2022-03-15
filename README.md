@@ -183,10 +183,8 @@ model = BCM(outputs=1000, num_epochs=10, optimizer=Adam(lr=4e-2),
 which means that the `GlorotNormal` function must be imported in `BCM_Classification`.
 
 By using this setting, the output of predict and testing functions are the following:
-
 <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/Simulation_images/Plot_raw_predict.png" 
 height = "700" width = "700">
-
 <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/Simulation_images/Accuracy_test.png" 
 height = "50" width = "300">
 
