@@ -163,7 +163,7 @@ model = fitting(x_train, y_train)
 
 <a href="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/Simulation_images/Fitting_Epochs.png">
   <div class="image">
-    <img src="Simulation_images/Fitting_Epochs.png" width="392" height="392">
+    <img src="Simulation_images/Fitting_Epochs.png" >
   </div>
 </a>
 
