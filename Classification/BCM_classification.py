@@ -185,3 +185,183 @@ class Classification():
             model_fit = model[0].fit(X) # Fitting the model, 
                                           # without the knowledge of the labels
         return [model_fit]
+    
+    def prevision(self, X, y, fitted_model):
+        '''
+        Function to make predictions on the basis of the fitted model.
+
+        Parameters
+        ----------
+
+        X : Dataframe
+            Test or validation set of images.
+
+        y : List
+            Test or validation set of labels.
+
+        fitted_model : function object
+            Fitted model.
+
+        Returns
+        -------
+        The array containing the predictions.
+
+        '''
+        #Usage of the BCM predict function
+        prediction = fitted_model[0].predict(X.values, y = np.zeros_like(y))
+            
+        return prediction
+    
+    def best_neuron(self, fitted_model, prevision):
+        '''
+        Method to extract the best labels, once the model has been trained and the 
+        predictions have been made.
+
+        Parameters
+        ----------
+        fitted_model : function object
+            Fitted model.
+        
+        prevision : array
+            Array containing the predictions of the model.
+
+        Returns
+        -------
+        execution : array
+            Labels corresponding to the best neuron.
+
+        '''
+        #Extraction of the labels
+        execution = [fitted_model[0].weights[np.argmax(x)][28*28:].argmax() 
+                 for x in prevision]
+        
+        return execution
+    
+    def top_ten(self, fitted_model, prevision):
+        '''
+        Function to extract the information of the ten neurons with the highest
+        response.
+
+        Parameters
+        ----------
+        fitted_model : function object
+            Fitted Model.
+        prevision : array
+            Array containing the predictions of the model.
+
+        Returns
+        -------
+        top_10 : array
+            Array made of arrays, containing the ten best labels for each y.
+
+        '''
+        top_10 = []
+        labels = fitted_model[0].weights[:,28*28:].argmax(axis=1) # Labels of the
+                                                                  # 100 neurons 
+        for x in prevision:
+             
+            # Union of prevision score and neuron
+            sorting = sorted(zip(x, labels),\
+                                key=lambda x : x[0], reverse=True)[:10]
+             
+            sorting = [x[1] for x in sorting]
+            
+            # Counting how many of the ten neurons give the same label as result
+            counter_lab = (Counter(sorting).most_common())
+            top_10.append(counter_lab)
+        return top_10
+   
+    def checking_y_size(self, y_test, clf):
+        '''
+        Function to control the size of the y test set, particularly useful when
+        the validation size is set in the classification function.
+
+        Parameters
+        ----------
+        y_test : List
+            Y test set used to check the dimension of the set of labels used in
+            classification function.
+        clf : Function object
+            The classification function.
+
+        Returns
+        -------
+        y_test : List
+            Set of labels used in classification function.
+
+        '''
+        #Checking the size of the labels used
+        if len(y_test) != len(clf[0]):
+            print('length of y_test', (len(y_test)), 'is different from that used',\
+                  'in the classification function:', len(clf[0]),\
+                  '. The last has been considered.')
+                
+            y_test = clf[0]   
+            
+        else:
+            y_test = y_test
+        
+        return y_test
+        
+    def checking_y_labels(self, clf, ten_label = False):
+        '''
+        Function to control if the set of labels comprises just the result from
+        best neuron or from the ten best neurons.
+
+        Parameters
+        ----------
+        clf : function
+            Classification function.
+        
+        ten_label : Bool, optional
+            The default is False.
+
+        Returns
+        -------
+        y_to_test : List
+            Set of labels to use in the study of metrics.
+
+        '''
+        if ten_label == False:
+            
+            y_to_test = clf[1]
+        
+        else:
+            #Extrapolation of the first result from the ten labels for each of
+            # image to predict
+            y_to_test = [clf[2][x][0][0] for x in range (len(clf[0]))]
+        
+        return y_to_test
+    
+    
+    def checking_batch(self,num_model, y_train):
+        '''
+        Control function to check the batch, particularly useful when the
+        validation set is used.
+
+        Parameters
+        ----------
+        i : int
+            Number to select the corresponding size of the batch from the batch
+            array.
+        y_train : List
+            Set of labels used in the classification function.
+
+        Returns
+        -------
+        Int
+            Returns the dimension of the batch, according to the dimension of
+            the label set used.
+
+        '''
+        #CHecking the dimension of the batch. If it is higher than the dimensions
+        #of the labels, it will be set equal to the dimension of the labels.
+        
+        if self.batch[num_model] > len(y_train):
+            print('The dimension of the batch',self.batch[num_model],'is much higher '
+                  'than that of the samples',len(y_train),'.\
+                  This last has been considered.')
+            self.batch[num_model] = len(y_train)
+        else:
+            self.batch[num_model] = self.batch[num_model]
+        return self.batch[num_model]
