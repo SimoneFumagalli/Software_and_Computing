@@ -399,3 +399,116 @@ class Classification():
             fit = self.fitting(x_train, models[i]) # Use of fitting function
             fits.append(fit)
             graphs = self.neurons_configuration(fits[i]) # Use of neurons_configuration function
+
+    def clf(self, num_model, x_train, x_test, y_train, y_test, validation_size: float = None):
+        '''
+        General function to make the classification.
+
+        Parameters
+        ----------
+        i : Int
+            Number corresponding to the element of the arrays of output, batch
+            and so on.
+        x_train : Dataframe
+            Train set of images.
+        x_test : Dataframe
+            Test set of images.
+        y_train : List
+            Train set of labels.
+        y_test : List
+            Test set of labels.
+        validation_size : float, optional
+            Float used for further splitting of the set. The default is None.
+
+        Returns
+        -------
+        y_test_ : List
+            Set of labels used, either the test or the validation.
+        best_neuron : List
+            Set of labels corresponding to the best results for each image.
+        top_10_array : List
+            Set of ten labels corresponding to the best ten neurons.
+        fitted_model : function object
+            Fitted Model.
+        predicting : array
+            Array containing the predictions of the model.
+
+        '''
+        if validation_size is not None:    
+            # Splitting of the train set to obtain the validation set
+            x_train_, x_test_, y_train_, y_test_ = \
+                self.Variable_Split(x_train, y_train, validation_size)
+        else:
+            x_train_, x_test_, y_train_, y_test_ = x_train, x_test,y_train, y_test
+        
+        #Checking the batch size.
+        self.batch[num_model] = self.checking_batch(num_model, y_train_)
+        
+        # Use of model function
+        model = self.modellization(num_model) 
+        
+        # Use of fitting function
+        fitted_model = self.fitting(x_train_, model, y_train_) 
+        
+        # Use of prevision function
+        predicting = self.prevision(x_test_, y_test_, fitted_model)
+        
+        # Use of labels function
+        best_neuron = self.best_neuron(fitted_model, predicting)
+        
+        # Use of top_ten function
+        top_10_array = self.top_ten(fitted_model, predicting)
+        
+        return y_test_, best_neuron, top_10_array, fitted_model, predicting
+    
+    
+        
+    def single_Metric(self, num_model, y_test, clf, ten_label = False):
+        '''
+        Function to study the metrics of a single model.
+
+        Parameters
+        ----------
+        i : Int
+            Number corresponding to the model under study.
+        y_test : List
+            Set of labels.
+        clf : array
+            Single Classification function.
+        ten_label : bool, optional
+            The default is False.
+
+        Returns
+        -------
+        accuracy_values: List
+            List of floats corresponding to the accuracies measured.
+        Classification report: str
+            List of complete classification report.
+
+        '''
+        models = []
+        accuracy_values = []
+        
+        #Checking the size of the test size
+        y_test = self.checking_y_size(y_test, clf)
+        
+        #Extrapolation of the labels from the hot-encoding vector
+        y_test = y_test.argmax(axis=1)
+        
+        #Checking the kind of labels, the single one or the ten result
+        y_to_test = self.checking_y_labels(clf, ten_label)
+        models.append(self.modellization(num_model))
+        
+        print(classification_report(y_test, y_to_test,
+                                zero_division = 0))
+        
+        
+        performance = classification_report(y_test, y_to_test, 
+                                             zero_division = 0,
+                                             output_dict = True)
+        
+        accuracy_values.append(performance['accuracy'])
+        
+        
+        return accuracy_values, classification_report(y_test, y_to_test,
+                              zero_division = 0)
