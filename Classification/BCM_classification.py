@@ -365,3 +365,37 @@ class Classification():
         else:
             self.batch[num_model] = self.batch[num_model]
         return self.batch[num_model]
+    
+    def neurons_configuration(self, fitted_model):
+        '''
+        Function to generate the image containing the configuration of the 
+        neurons.
+        
+        Parameters
+        ----------
+        fitted_model : function object
+            Fitted model.
+        
+        '''
+        view_weights(fitted_model[0].weights, dims=(28,28))
+    
+    def neuron_graphs(self, x_train):
+        '''
+        General function to show the configurations of the neurons.
+        The result can be one or more images, according to the 
+        number_attempts' value.
+
+        Parameters
+        ----------
+        x_train : Dataframe
+            Train set.
+        '''
+        models = []
+        fits = []
+                
+        for i in range (self.number_attempts):
+            model = self.modellization(i) # Use of model function
+            models.append(model) 
+            fit = self.fitting(x_train, models[i]) # Use of fitting function
+            fits.append(fit)
+            graphs = self.neurons_configuration(fits[i]) # Use of neurons_configuration function
