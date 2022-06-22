@@ -512,3 +512,143 @@ class Classification():
         
         return accuracy_values, classification_report(y_test, y_to_test,
                               zero_division = 0)
+    
+    def multiple_clf(self, x_train, x_test, y_train, y_test, v_s = None):
+        '''
+        Function to classify multiple models.
+
+        Parameters
+        ----------
+        x_train : Dataframe
+            Train set of images.
+        x_test : Dataframe
+            Test set of images.
+        y_train : List
+            Train set of labels.
+        y_test : List
+            Test set of labels.
+        v_s : float, optional
+            Fraction describing the further splitting of the train set if v_s
+            is True. The default is None.
+
+        Returns
+        -------
+        clas : array
+            Array containing all the output of the clf function.
+        '''
+        clas = []
+        
+        #Cycle to operate the classification for each of the models under study
+        for i in range(self.number_attempts):
+            classification = self.clf(i, x_train, x_test, y_train, y_test, v_s)
+            clas.append(classification)
+        return clas
+            
+    def Metrics(self, y_test, multiple_clf, ten_label = False):
+        '''
+        Function used to give some informations about the model predictions
+        performance, such as accuracy, precision, recall and so on.
+
+        Parameters
+        ----------
+        y_test : List
+            Test set of labels.
+        
+        multiple_clf: list
+            LIst of output from the multiple classification function.
+        ten_label : bool, optional
+            The default is False.
+
+        Returns
+        -------
+        accuracy_values : List
+            List of values as output of single metric function applied to
+            different models.
+        '''
+        models = []
+        accuracy_values = []
+        
+        #Cycle to operate the performance of each models
+        for i in range(self.number_attempts):
+            models.append(multiple_clf[i][3])
+            perf = self.single_Metric(i, y_test, multiple_clf[i], ten_label)
+            accuracy_values.append(perf[0])
+        
+        print('Maximum accuracy:', np.max(accuracy_values),'from the model:', \
+              models[np.argmax(accuracy_values)])
+            
+        return accuracy_values
+    
+    def best_result(self, x_test, y_test, clf, x_predict):
+        '''
+        Major function to show the model's best neuron graph.
+
+        Parameters
+        ----------
+        x_test : Dataframe
+            Dataframe of the test set.
+        y_test : List
+            Set of test labels.
+        clf : function object.
+            Array containing the different outputs of the classification function.
+            If the multiple classification function is used, insert clf[num_model].
+        x_predict : int
+            Integer corresponding to the number of label to predict.
+
+        Returns
+        -------
+        label : Int
+            label of the best neuron.
+        Ten_label: List
+            labels of the ten best neuron.
+
+        '''   
+        nc = np.amax(np.abs(clf[3][0].weights))
+        label = clf[1][x_predict]
+        ten_label = clf[2][x_predict]
+        best_result = clf[3][0].weights[np.argmax(clf[4][x_predict])]\
+            [:28*28].reshape(28, 28)
+        
+        fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(12, 12))
+        ax1.set_title('Image from the Fashion-MNIST dataset: {:d}'.format(y_test[x_predict].argmax()))
+        ax1.imshow(x_test.values[x_predict].reshape(28, 28), cmap='gray'); ax1.axis('off')
+        
+        ax2.set_title('Prediction using BCM: {:d}'.format(label))
+        ax2.imshow(best_result, vmin=-nc, vmax=nc); ax2.axis('off')
+        
+        fig.text(0.5, 0.24, 'Ten best neuron result: {}'.format(ten_label),
+                 horizontalalignment='center', fontsize = 14)
+        
+        return label, ten_label
+
+if __name__ == "__main":
+    from sklearn.datasets import fetch_openml
+    from plasticity.model.optimizer import Adam, Adamax, SGD, Momentum,\
+                                           NesterovMomentum, Adagrad, Adadelta,\
+                                           RMSprop
+    from plasticity.model.weights import GlorotNormal, HeNormal, Uniform,\
+                                         LecunUniform, GlorotUniform, LecunNormal,\
+                                         HeUniform, Orthogonal, TruncatedNormal
+    
+    X, y = fetch_openml(name='Fashion-MNIST', version=1, data_id=None, return_X_y=True)
+
+    out = [100]
+    epoc = [10000]
+    bat = [61250]
+    wei = [GlorotUniform()]
+    num = 1
+    opti = [SGD(lr=3e-2)]
+    strength = [-0.001]
+
+    go = Classification(out, bat, wei, num, opti, strength, epoc)
+    
+    x_norm, y_resh = go.Variable_Reshape(X, y)
+    x_train,x_test,y_train,y_test = go.Variable_Split(x_norm, y_resh, 1./8)
+    
+    print('Metric study Beginning')
+    print()
+    performance = go.Metrics(x_train, x_test, y_train, y_test, 1./8)
+    print()
+    print('Classification beginning')
+    print()
+    clas = go.clf(x_train, y_train, x_test,y_test)
