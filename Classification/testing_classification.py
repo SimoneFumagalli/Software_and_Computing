@@ -16,7 +16,7 @@ from plasticity.model.weights import GlorotNormal, HeNormal, Uniform,\
                                      HeUniform, Orthogonal, TruncatedNormal
 
 
-from untitled16 import Classia
+from BCM_classification import Classification
 
 X, y = fetch_openml(name='mnist_784', version=1, data_id=None, return_X_y=True)
 
@@ -31,7 +31,7 @@ opti = [Adam(lr=1e-3), Adamax(), Momentum(),\
         RMSprop(lr=1e-2)]
 strength = [-0.001,-0.001,-0.005,-0.005,-0.005,-0.001,-0.001,-0.001]
 
-go = Classia(out, bat, wei, num, opti, strength, epoc)
+go = Classification(out, bat, wei, num, opti, strength, epoc)
 
 #Reshaping of the dataset
 x_norm, y_transformed = go.Variable_Reshape(X, y)
@@ -85,7 +85,7 @@ def test_fitting():
     opti = [Adam(lr=1e-3), Adamax()]
     strength = [-0.001,-0.001]
 
-    go = Classia(out, bat, wei, num, opti, strength, epoc)
+    go = Classification(out, bat, wei, num, opti, strength, epoc)
 
     model_a = go.modellization(0)
     model_b = go.modellization(1)
@@ -110,7 +110,7 @@ def test_prevision():
     num = 1
     opti = [Adam(lr=1e-3)]
     strength = [-0.001]
-    go = Classia(out, bat, wei, num, opti, strength, epoc)
+    go = Classification(out, bat, wei, num, opti, strength, epoc)
    
     model = go.modellization(0)
     
@@ -136,7 +136,7 @@ def test_best_neuron():
     num = 1
     opti = [Adam(lr=1e-3)]
     strength = [-0.001]
-    go = Classia(out, bat, wei, num, opti, strength, epoc)
+    go = Classification(out, bat, wei, num, opti, strength, epoc)
 
     model = go.modellization(0)
     
@@ -160,7 +160,7 @@ def test_top_ten():
     num = 1
     opti = [Adam(lr=1e-3)]
     strength = [-0.001]
-    go = Classia(out, bat, wei, num, opti, strength, epoc)
+    go = Classification(out, bat, wei, num, opti, strength, epoc)
 
     model = go.modellization(0)
     
@@ -189,7 +189,7 @@ def test_checking_y_size():
     opti = [Adam(lr=1e-3), Adamax()]
     strength = [-0.001,-0.001]
 
-    go = Classia(out, bat, wei, num, opti, strength, epoc)
+    go = Classification(out, bat, wei, num, opti, strength, epoc)
     
     clf_0 = go.clf(0, x_train, x_test, y_train, y_test)
     clf_1 = go.clf(1, x_train, x_test, y_train, y_test, 1./8)
@@ -213,7 +213,7 @@ def test_checking_y_labels():
     opti = [Adam(lr=1e-3), Adamax()]
     strength = [-0.001,-0.001]
 
-    go = Classia(out, bat, wei, num, opti, strength, epoc)
+    go = Classification(out, bat, wei, num, opti, strength, epoc)
     
     clf_0 = go.clf(0, x_train, x_test, y_train, y_test)
     clf_1 = go.clf(1, x_train, x_test, y_train, y_test, 1./8)
@@ -244,7 +244,7 @@ def test_checking_batch():
     opti = [Adam(lr=1e-3), Adamax()]
     strength = [-0.001,-0.001]
 
-    go = Classia(out, bat, wei, num, opti, strength, epoc)
+    go = Classification(out, bat, wei, num, opti, strength, epoc)
     
     check_0 = go.checking_batch(0, y_train)
     check_1 = go.checking_batch(1, y_train)
@@ -265,7 +265,7 @@ def test_clf():
     opti = [Adam(lr=1e-3), Adamax()]
     strength = [-0.001,-0.001]
 
-    go = Classia(out, bat, wei, num, opti, strength, epoc)
+    go = Classification(out, bat, wei, num, opti, strength, epoc)
     
     clf_0 = go.clf(0, x_train, x_test, y_train, y_test)
     clf_1 = go.clf(1, x_train, x_test, y_train, y_test, 1./8)
@@ -307,7 +307,7 @@ def test_single_Metric():
     opti = [Adam(lr=1e-3), Adamax()]
     strength = [-0.001,-0.001]
 
-    go = Classia(out, bat, wei, num, opti, strength, epoc)
+    go = Classification(out, bat, wei, num, opti, strength, epoc)
     
     clf_0 = go.clf(0, x_train, x_test, y_train, y_test)
     clf_1 = go.clf(1, x_train, x_test, y_train, y_test, 1./8)
@@ -342,7 +342,7 @@ def test_multiple_clf():
     opti = [Adam(lr=1e-3), Adamax()]
     strength = [-0.001,-0.001]
 
-    go = Classia(out, bat, wei, num, opti, strength, epoc)
+    go = Classification(out, bat, wei, num, opti, strength, epoc)
     
     multi_0 = go.multiple_clf(x_train, x_test, y_train, y_test)
     multi_1 = go.multiple_clf(x_train, x_test, y_train, y_test,1./8)
@@ -376,7 +376,7 @@ def test_Metrics():
     opti = [Adam(lr=1e-3), Adamax()]
     strength = [-0.001,-0.001]
 
-    go = Classia(out, bat, wei, num, opti, strength, epoc)
+    go = Classification(out, bat, wei, num, opti, strength, epoc)
     
     multiple_clf_0 = go.multiple_clf(x_train, x_test, y_train, y_test)
     multiple_clf_1 = go.multiple_clf(x_train, x_test, y_train, y_test, 1./8)
@@ -401,7 +401,7 @@ def test_best_result():
     opti = [Adam(lr=1e-3), Adamax()]
     strength = [-0.001,-0.001]
     
-    go = Classia(out, bat, wei, num, opti, strength, epoc)
+    go = Classification(out, bat, wei, num, opti, strength, epoc)
 
     clf_0 = go.clf(0, x_train, x_test, y_train, y_test)
     clf_1 = go.clf(1, x_train, x_test, y_train, y_test, 1./8)

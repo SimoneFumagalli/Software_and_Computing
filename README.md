@@ -661,7 +661,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
 ```
 
 ### Simulation
- The `simulation` script contains the main code of the project, containing the functions of the `BCM_Classification` script and showing the results obtained.
+ The `simulation` folder contains the different cases in which the `class` can be used, also showing the results obtained.
  At first, the `BCM_Classification` must be imported,
  together with the Fashion-Mnist and the `fetch_openml` from the `sklearn.datasets`.
  Then, the Fashion-MNIST dataset must be imported and assigned to the variables X and y.
@@ -673,7 +673,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
 
  from plasticity.model.weights import GlorotNormal, HeNormal, Uniform, LecunUniform, GlorotUniform, LecunNormal, HeUniform, Orthogonal, TruncatedNormal
 
- from Accuracy_test import Classification
+ from BCM_classification import Classification
 
  X, y = fetch_openml(name='Fashion-MNIST', version=1,  data_id=None, return_X_y=True)
  ```
