@@ -661,7 +661,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
 ```
 
 ### Simulation
- The `simulation` folder contains the different cases in which the `class` can be used, also showing the results obtained.
+ The `simulation` folder contains the different cases in which the `class` can be used, also showing the best results obtained until now.
  At first, the `BCM_Classification` must be imported,
  together with the Fashion-Mnist and the `fetch_openml` from the `sklearn.datasets`.
  Then, the Fashion-MNIST dataset must be imported and assigned to the variables X and y.
@@ -712,7 +712,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
  
  ```python
  model = clas.modellization(0)
- model_fit = clas.fitting(x_train, models)
+ model_fit = clas.fitting(x_train, model)
  neur = clas.neurons_configuration(model_fit)
  ```
  
@@ -751,7 +751,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
 
  ```python
  clf = clas.clf(0, x_train, x_test, y_train, y_test)
- performance = clas.single_Metric(0, y_test, clf, True)
+ performance = clas.single_Metric(0, y_test, clf, ten_labels=True)
  ```
 
  #IMMAGINE CON TEN LABELS
@@ -789,7 +789,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
  multiple_clas = clas.multiple_clf(x_train, x_test, y_train, y_test)
  for i in range(num):
     for j in range(4):
-        b_r = clas.best_result(x_test, y_test, clf[i], j)
+        b_r = clas.best_result(x_test, y_test, multiple_clas[i], j)
  ```
  #IMMAGINI DI 4 BEST RESULT
 
