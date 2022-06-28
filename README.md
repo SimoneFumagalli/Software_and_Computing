@@ -732,7 +732,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
  height = "350" width = "350">
 
  #### Classification and Performance
- * Single Model
+ * Single Model <p>
  By inserting a `0` in the `clf` and `single_Metric` functions, we are saying to the algorithm to take the corresponding parameters from the arrays of epoch, batch and so on.
  In order to validate the model, the `validation_size` parameter must be used.
  ```python
@@ -756,24 +756,24 @@ def best_result(self, x_test, y_test, clf, x_predict):
 
  #IMMAGINE CON TEN LABELS
 
- * Multiple Models
+ * Multiple Models <p>
  ```python
  #VALIDATION
  multiple_clas = clas.multiple_clf(x_train, x_test, y_train, y_test,1./8)
- performance = clas.Metrics(y_test, ten_labels = False)
+ performance = clas.Metrics(y_test, multiple_clas, ten_labels = False)
  ```
  #IMMAGINE PERFORMANCE
 
  ```python
  #SIMPLE CLASSIFICATION
  multiple_clas = clas.multiple_clf(x_train, x_test, y_train, y_test)
- performance = clas.Metrics(y_test, ten_labels = False)
+ performance = clas.Metrics(y_test, multiple_clas, ten_labels = False)
  ```
  In the following example, the result of the classification is obtained not from one single neuron (the best one) but from the survey of the best ten neurons.
 
  ```python
  multiple_clas = clas.multiple_clf(x_train, x_test, y_train, y_test)
- performance = clas.Metrics(y_test, ten_labels = True)
+ performance = clas.Metrics(y_test, multiple_clas, ten_labels = True)
  ```
 
  #### Best Result
