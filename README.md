@@ -761,17 +761,37 @@ def best_result(self, x_test, y_test, clf, x_predict):
  </tbody>
  </table>
  </div>
- #Risultati Metric with Test Set
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/Simulation_images/Fitting_Epochs.png" 
- height = "350" width = "350">
 
-It is also possible to study the performance of the classification by considering the ten best neurons.
+
+ #Risultati Metric with Test Set
+ <div align="center">
+ <table width="300" border="0">
+ <thead><td colspan="2" align="center">Metric with Validation Set</td></thead>
+ <tbody>
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Test_Set/Metric_best_neur_part_1.png" 
+ height = "300" width = "300"></td>
+ <td valign="top">
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Test_Set/Metric_best_neur_part_2.png" 
+ height = "300" width = "300"></td>
+ </tbody>
+ </table>
+ </div>
+ <div align="center">
+ <table width="300" border="0">
+ <tbody>
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Test_Set/Metric_best_neur_part_3.png" 
+ height = "100" width = "400"></td>
+ </tbody>
+ </table>
+ </div>
+
+ It is also possible to study the performance of the classification by considering the ten best neurons.
 
  ```python
  metrics = clas.Metrics(y_test, clas, ten_labels = True)
  ```
 
- In the images below, it's possible to observe decreased results, due probably to the not so much accurate configuration of the neurons (for the result with the validation set, look at the images in the folder).
+ In the images below, it's possible to observe decreased accuracy results, due probably to the not so much accurate configuration of the neurons (for the result with the validation set, look at the images in the folder).
 
  #Risultati Metric with Test Set
  <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/Simulation_images/Fitting_Epochs.png" 
