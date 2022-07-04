@@ -743,16 +743,19 @@ def best_result(self, x_test, y_test, clf, x_predict):
  ```
  #Risultati Metric with Validation Set
  <div align="center">
- <table width="300" border="0">
- <tbody>
- <tr>
- <td valign="top">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Validation_Set/Metric_best_neur_part_1.png" 
- height = "300" width = "300"></td>
- <td valign="top">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Validation_Set/Metric_best_neur_part_2.png" 
- height = "300" width = "300"></td>
- </tr></tbody></table>
+    <table width="300" border="0">
+        <tbody>
+            <tr>
+                <th colspan="2">Metric with Validation Set</th>
+                <td valign="top">
+                <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Validation_Set/Metric_best_neur_part_1.png" 
+                height = "300" width = "300"></td>
+                <td valign="top">
+                <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Validation_Set/Metric_best_neur_part_2.png" 
+                height = "300" width = "300"></td>
+            </tr>
+        </tbody>
+    </table>
  </div>
  
  #Risultati Metric with Test Set
