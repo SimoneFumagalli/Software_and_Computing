@@ -742,20 +742,16 @@ def best_result(self, x_test, y_test, clf, x_predict):
  metrics = clas.Metrics(y_test, clas)
  ```
  #Risultati Metric with Validation Set
- <table cellspacing="2"
- cellpadding="2" width="600"
- border="0">
+ <table cellspacing="2" cellpadding="2" width="600" border="0">
  <div align = "center">
  <tbody>
  <tr>
  <td valign="top">
  <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Validation_Set/Metric_best_neur_part_1.png" 
- height = "200" width = "200">
- 1</td>
+ height = "200" width = "200"> </td>
  <td valign="top">
  <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Validation_Set/Metric_best_neur_part_2.png" 
- height = "200" width = "200">
- 2</td>
+ height = "200" width = "200"> <td>
  </tr>
  </tbody>
  </div>
