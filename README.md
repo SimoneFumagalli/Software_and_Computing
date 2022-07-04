@@ -718,6 +718,8 @@ def best_result(self, x_test, y_test, clf, x_predict):
  height = "300" width = "300"></td>
  </tbody>
  </table>
+ </div>
+ 
  <div align="center">
  <table width="300" border="0">
  <thead><td colspan="2" align="center">Last Two Models</td></thead>
