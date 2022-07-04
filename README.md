@@ -711,10 +711,10 @@ def best_result(self, x_test, y_test, clf, x_predict):
  <table width="300" border="0">
  <thead><td colspan="2" align="center">First Two Models </td></thead>
  <tbody>
- <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Neuron_config/Figure_1.png" 
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Neuron_configuration/Figure_1.png" 
  height = "300" width = "300"></td>
  <td valign="top">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Neuron_config/Figure_2.png" 
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Neuron_configuration/Figure_2.png" 
  height = "300" width = "300"></td>
  </tbody>
  </table>
@@ -722,10 +722,10 @@ def best_result(self, x_test, y_test, clf, x_predict):
  <table width="300" border="0">
  <thead><td colspan="2" align="center">Last Two Models</td></thead>
  <tbody>
- <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Neuron_config/Figure_3.png" 
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Neuron_configuration/Figure_3.png" 
  height = "300" width = "300"></td>
  <td valign="top">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Neuron_config/Figure_4.png" 
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Neuron_configuration/Figure_4.png" 
  height = "300" width = "300"></td>
  </tbody>
  </table>
