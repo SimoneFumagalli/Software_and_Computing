@@ -845,11 +845,42 @@ def best_result(self, x_test, y_test, clf, x_predict):
  ```
  Some examples are shown below.
 
- #Immagini ottenute
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/Simulation_images/Fitting_Epochs.png" 
- height = "350" width = "350">
+ <div align="center">
+ <table width="200" border="0">
+ <tbody>
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_result_Images/Figure_1.png" 
+ height = "200" width = "200"></td>
+ <td valign="top">
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_result_Images/Figure_2.png" 
+ height = "300" width = "300"></td>
+ </tbody>
+ </table>
+ </div>
 
- 
+<div align="center">
+ <table width="200" border="0">
+ <tbody>
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_result_Images/Figure_3.png" 
+ height = "200" width = "200"></td>
+ <td valign="top">
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_result_Images/Figure_4.png" 
+ height = "300" width = "300"></td>
+ </tbody>
+ </table>
+ </div>
+
+<div align="center">
+ <table width="200" border="0">
+ <tbody>
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_result_Images/Figure_5.png" 
+ height = "200" width = "200"></td>
+ <td valign="top">
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_result_Images/Figure_6.png" 
+ height = "300" width = "300"></td>
+ </tbody>
+ </table>
+ </div>
+
  ### Testing
 
  In the last file, `testing`, the parameters are controlled to be in the right form such as required by the functions. 
