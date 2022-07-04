@@ -828,7 +828,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
  <div align="center">
  <table width="300" border="0">
  <tbody>
- <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Test_Set/Metric_ten_3.png" 
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Test_Set/Metric_ten_part_3.png" 
  height = "100" width = "400"></td>
  </tbody>
  </table>
