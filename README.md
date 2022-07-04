@@ -660,8 +660,9 @@ def best_result(self, x_test, y_test, clf, x_predict):
         return label, ten_label
 ```
 
-### Simulation
- The `simulation` folder contains the different cases in which the `class` can be used, also showing the best results obtained until now.
+### Results
+ The `results` folder contains the best results obtained using different parameters of the Plasticity package.
+ The `multiple_clf`function has been used, with and without the validation set.
  At first, the `BCM_Classification` must be imported,
  together with the Fashion-Mnist and the `fetch_openml` from the `sklearn.datasets`.
  Then, the Fashion-MNIST dataset must be imported and assigned to the variables X and y.
@@ -680,18 +681,18 @@ def best_result(self, x_test, y_test, clf, x_predict):
  The parameters of the `class` then must be written.
 
  In general, the parameters must be written once.
- Once passing from a fitting with both X and y to a fitting with just the X (or the inverse case), the parameters and the `class` must be re-assigned.
+ Once passing from a fitting model with both X and y to one with just the X (or the inverse passage), the parameters and the `class` must be re-assigned.
+
+#### Visualization of the Neuron Configuration
 
  ```python
- out = [100,100,100,100,100,100,100,100]
- epoc = [12000,5000,5000,5000,30,10,10,10]
- bat = [61250,61250,61250,61250,1700,1000,1000,1000]
- wei = [GlorotUniform(),GlorotNormal(),GlorotNormal(),GlorotNormal(),GlorotNormal(),GlorotNormal(),GlorotNormal(),GlorotNormal()]
- num = 8
- opti = [SGD(lr=1e-1), Adamax(), Momentum(),\
-        NesterovMomentum(lr=1e-2),SGD(lr=3e-2),Adagrad(lr=1e-2),Adadelta(lr=1e-2),\
-        RMSprop(lr=1e2)]
- strenght = [-0.0005,-0.001,-0.005,-0.005,-0.005,-0.001,-0.001,-0.001]
+ out = [100,100,100,100]
+ epoc = [250, 600, 700, 800]
+ bat = [61250,61250,61250,61250]
+ wei = [GlorotUniform(),GlorotNormal(),GlorotNormal(),GlorotNormal()]
+ num = 4
+ opti = [SGD(lr=1e-2), SGD(lr=3e-2),, SGD(lr=1e-2), SGD(lr=1e-2)]
+ strenght = [1.5,-0.09, 1, 1]
  clas = Classification(out, bat, wei, num, opti, strenght, epoc)
  ```
  By using the `Variable_Reshape` and the `Variable_Split`, X and y are first reshaped and then they are splitted in the train and test set.
@@ -700,28 +701,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
  x_norm, y_resh = clas.Variable_Reshape(X, y)
  x_train,x_test,y_train,y_test = clas.Variable_Split(x_norm, y_resh, 1./8)
  ```
-
- From now on the different cases will be treated separately, showing how to work with a single models and multiple models.
- 
- In the single case, the parameters `number_attempts` must be specified, but it is not considered.
- Also, the Multiple Functions can be used in the single case, it just needs to set `number_attempts` = 1.
-
- #### Visualization of the Neuron Configuration
- * Single Model
- By inserting a `0` in the modelizzation function, we are saying to the algorithm to take the corresponding parameters from the arrays of epoch, batch and so on.
- 
- ```python
- model = clas.modellization(0)
- model_fit = clas.fitting(x_train, model)
- neur = clas.neurons_configuration(model_fit)
- ```
- 
- #IMMAGINE DEI NEURONI CONFIGURATI
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/Simulation_images/Fitting_Epochs.png" 
- height = "350" width = "350">
- 
- * Multiple Models
- In this case, just a single function needs to be called.
+ Then the `neuron_graphs` function must be called and, depending on the `number_attempts`, a certain number of output will be shown. Every single result will be equal to that in case just `neuron_configuration` is used.
  
  ```python
  ne = clas.neuron_graphs(x_train)
@@ -732,67 +712,71 @@ def best_result(self, x_test, y_test, clf, x_predict):
  height = "350" width = "350">
 
  #### Classification and Performance
- * Single Model <p>
- By inserting a `0` in the `clf` and `single_Metric` functions, we are saying to the algorithm to take the corresponding parameters from the arrays of epoch, batch and so on.
- In order to validate the model, the `validation_size` parameter must be used.
- ```python
- #VALIDATION
- clf = clas.clf(0, x_train, x_test, y_train, y_test, 1./8)
- performance = clas.single_Metric(0, y_test, clf)
- ```
- #IMMAGINE PERFORMANCE
+ At this point, the parameters and the model must be re-assigned.
 
  ```python
- #SIMPLE CLASSIFICATION
- clf = clas.clf(0, x_train, x_test, y_train, y_test)
- performance = clas.single_Metric(0, y_test, clf)
+ out = [1000,1000,1000,1000]
+ epoc = [250, 600, 700, 800]
+ bat = [61250,61250,61250,61250]
+ wei = [GlorotUniform(),GlorotNormal(),GlorotNormal(),GlorotNormal()]
+ num = 4
+ opti = [SGD(lr=1e-2), SGD(lr=3e-2),, SGD(lr=1e-2), SGD(lr=1e-2)]
+ strenght = [1.5,-0.09, 1, 1]
+ clas = Classification(out, bat, wei, num, opti, strenght, epoc)
  ```
- In the following example, the result of the classification is obtained not from one single neuron (the best one) but from the survey of the best ten neurons.
+ 
+ Now, the `multiple_clf` function can be used, with and without the validation set.
 
- ```python
- clf = clas.clf(0, x_train, x_test, y_train, y_test)
- performance = clas.single_Metric(0, y_test, clf, ten_labels=True)
- ```
-
- #IMMAGINE CON TEN LABELS
-
- * Multiple Models <p>
  ```python
  #VALIDATION
  multiple_clas = clas.multiple_clf(x_train, x_test, y_train, y_test,1./8)
- performance = clas.Metrics(y_test, multiple_clas, ten_labels = False)
- ```
- #IMMAGINE PERFORMANCE
 
- ```python
- #SIMPLE CLASSIFICATION
+ #WITHOUT VALIDATION
  multiple_clas = clas.multiple_clf(x_train, x_test, y_train, y_test)
- performance = clas.Metrics(y_test, multiple_clas, ten_labels = False)
  ```
- In the following example, the result of the classification is obtained not from one single neuron (the best one) but from the survey of the best ten neurons.
+ [Note: even the `clf` function can be used with and without the validation set. In that specific case, the number of model that one want to consider must be specified. Also, the `single_Metric` must be used.]
+ 
+ The `Metric` function then can be used, obtaining the performance of the different models, indicating the best result.
+ 
+ ```python
+ metrics = clas.Metrics(y_test, clas)
+ ```
+ #Risultati Metric with Validation Set
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/Simulation_images/Fitting_Epochs.png" 
+ height = "350" width = "350">
+
+ #Risultati Metric with Test Set
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/Simulation_images/Fitting_Epochs.png" 
+ height = "350" width = "350">
+
+It is also possible to study the performance of the classification by considering the ten best neurons.
 
  ```python
- multiple_clas = clas.multiple_clf(x_train, x_test, y_train, y_test)
- performance = clas.Metrics(y_test, multiple_clas, ten_labels = True)
+ metrics = clas.Metrics(y_test, clas, ten_labels = True)
  ```
 
- #### Best Result
- In order to observe which neuron (and so, which image) the model has chosen to be the most similar to the test image, the `best_result` function can be used.
+ In the images below, it's possible to observe decreased results, due probably to the not so much accurate configuration of the neurons (for the result with the validation set, look at the images in the folder).
+
+ #Risultati Metric with Test Set
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/Simulation_images/Fitting_Epochs.png" 
+ height = "350" width = "350">
+
+ The best result between the considered models is:
  ```python
- clf = clas.clf(0, x_train, x_test, y_train, y_test)
- for i in range(4):
-    b_r = clas.best_result(x_test, y_test, clf, i)
+ output = 1000
+ epoch = 800
+ batch_size = 61250
+ weight = GlorotUniform()
+ optimizer = SGD(lr=1e-2)
+ interaction_strength = 1
  ```
+ Some examples are shown below.
 
- As already said, it's possible also to use the multple classification function in the `best_result`.
- ```python
- multiple_clas = clas.multiple_clf(x_train, x_test, y_train, y_test)
- for i in range(num):
-    for j in range(4):
-        b_r = clas.best_result(x_test, y_test, multiple_clas[i], j)
- ```
- #IMMAGINI DI 4 BEST RESULT
+ #Immagini ottenute
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/Simulation_images/Fitting_Epochs.png" 
+ height = "350" width = "350">
 
+ 
  ### Testing
 
  In the last file, `testing`, the parameters are controlled to be in the right form such as required by the functions. 

@@ -614,7 +614,7 @@ class Classification():
         ax1.imshow(x_test.values[x_predict].reshape(28, 28), cmap='gray'); ax1.axis('off')
         
         ax2.set_title('Prediction using BCM: {:d}'.format(label))
-        ax2.imshow(best_result, vmin=-nc, vmax=nc); ax2.axis('off')
+        ax2.imshow(best_result, cmap='bwr', vmin=-nc, vmax=nc); ax2.axis('off')
         
         fig.text(0.5, 0.24, 'Ten best neuron result: {}'.format(ten_label),
                  horizontalalignment='center', fontsize = 14)
