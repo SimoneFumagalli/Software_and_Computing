@@ -742,11 +742,23 @@ def best_result(self, x_test, y_test, clf, x_predict):
  metrics = clas.Metrics(y_test, clas)
  ```
  #Risultati Metric with Validation Set
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Validation_set/Metric_best_neur_part_1.png" 
- height = "200" width = "200">
+ <table cellspacing="2"
+ cellpadding="2" width="600"
+ border="0">
+ <tbody>
+ <tr>
+ <td valign="top">
  <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Validation_Set/Metric_best_neur_part_1.png" 
  height = "200" width = "200">
-
+ 1</td>
+ <td valign="top">
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Validation_Set/Metric_best_neur_part_1.png" 
+ height = "200" width = "200">
+ 2</td>
+ </tr>
+ </tbody>
+ </table>
+ 
  #Risultati Metric with Test Set
  <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/Simulation_images/Fitting_Epochs.png" 
  height = "350" width = "350">
