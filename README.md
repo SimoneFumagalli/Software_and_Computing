@@ -1,7 +1,7 @@
-# Classification and Inpainting using BCM
+# Metrics for BCM classification
 
 * [Theory](#theory)
-* [Classification](#classification)
+* [Classification and Metrics](#classification)
 * [References](#references)
 
 
