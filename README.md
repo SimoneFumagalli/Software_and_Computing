@@ -820,7 +820,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
  <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/results/Metric_Test_Set/Metric_ten_part_1.png" 
  height = "300" width = "300"></td>
  <td valign="top">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Test_Set/Metric_ten_part_2.png" 
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/results/Metric_Test_Set/Metric_ten_part_2.png" 
  height = "300" width = "300"></td>
  </tbody>
  </table>
