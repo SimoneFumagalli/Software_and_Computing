@@ -852,7 +852,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
  height = "200" width = "200"></td>
  <td valign="top">
  <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_Result_Images/Figure_2.png" 
- height = "300" width = "300"></td>
+ height = "200" width = "200"></td>
  </tbody>
  </table>
  </div>
@@ -864,7 +864,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
  height = "200" width = "200"></td>
  <td valign="top">
  <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_Result_Images/Figure_4.png" 
- height = "300" width = "300"></td>
+ height = "200" width = "200"></td>
  </tbody>
  </table>
  </div>
@@ -876,7 +876,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
  height = "200" width = "200"></td>
  <td valign="top">
  <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_Result_Images/Figure_6.png" 
- height = "300" width = "300"></td>
+ height = "200" width = "200"></td>
  </tbody>
  </table>
  </div>
