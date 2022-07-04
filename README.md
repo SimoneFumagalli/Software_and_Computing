@@ -32,7 +32,7 @@ while a more recent formula has been drawn from Law and Cooper in 1994:
 
 For further details, look at this site [here](http://scholarpedia.org/article/BCM).
 
-## Classification
+## Classification and Metrics
 
 In order to work with the BCM model, the plasticity package must be downloaded at this [link](https://github.com/Nico-Curti/plasticity), created by Nico Curti et al. on GitHub. At this link, information about the download of the plasticity package, implementation and parameters value can be found.
 
@@ -711,10 +711,10 @@ def best_result(self, x_test, y_test, clf, x_predict):
  <table width="300" border="0">
  <thead><td colspan="2" align="center">First Two Models </td></thead>
  <tbody>
- <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Neuron_configuration/Figure_1.png" 
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/results/Neuron_configuration/Figure_1.png" 
  height = "300" width = "300"></td>
  <td valign="top">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Neuron_configuration/Figure_2.png" 
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/results/Neuron_configuration/Figure_2.png" 
  height = "300" width = "300"></td>
  </tbody>
  </table>
@@ -724,10 +724,10 @@ def best_result(self, x_test, y_test, clf, x_predict):
  <table width="300" border="0">
  <thead><td colspan="2" align="center">Last Two Models</td></thead>
  <tbody>
- <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Neuron_configuration/Figure_3.png" 
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/results/Neuron_configuration/Figure_3.png" 
  height = "300" width = "300"></td>
  <td valign="top">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Neuron_configuration/Figure_4.png" 
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/results/Neuron_configuration/Figure_4.png" 
  height = "300" width = "300"></td>
  </tbody>
  </table>
@@ -767,10 +767,10 @@ def best_result(self, x_test, y_test, clf, x_predict):
  <table width="300" border="0">
  <thead><td colspan="2" align="center">Metric with Validation Set</td></thead>
  <tbody>
- <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Validation_Set/Metric_best_neur_part_1.png" 
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/results/Metric_Validation_Set/Metric_best_neur_part_1.png" 
  height = "300" width = "300"></td>
  <td valign="top">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Validation_Set/Metric_best_neur_part_2.png" 
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/results/Metric_Validation_Set/Metric_best_neur_part_2.png" 
  height = "300" width = "300"></td>
  </tbody>
  </table>
@@ -778,7 +778,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
  <div align="center">
  <table width="300" border="0">
  <tbody>
- <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Validation_Set/Metric_best_neur_part_3.png" 
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/results/Metric_Validation_Set/Metric_best_neur_part_3.png" 
  height = "100" width = "400"></td>
  </tbody>
  </table>
@@ -788,10 +788,10 @@ def best_result(self, x_test, y_test, clf, x_predict):
  <table width="300" border="0">
  <thead><td colspan="2" align="center">Metric with Test Set</td></thead>
  <tbody>
- <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Test_Set/Metric_best_neur_part_1.png" 
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/results/Metric_Test_Set/Metric_best_neur_part_1.png" 
  height = "300" width = "300"></td>
  <td valign="top">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Test_Set/Metric_best_neur_part_2.png" 
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/results/Metric_Test_Set/Metric_best_neur_part_2.png" 
  height = "300" width = "300"></td>
  </tbody>
  </table>
@@ -799,7 +799,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
  <div align="center">
  <table width="300" border="0">
  <tbody>
- <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Test_Set/Metric_best_neur_part_3.png" 
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/results/Metric_Test_Set/Metric_best_neur_part_3.png" 
  height = "100" width = "400"></td>
  </tbody>
  </table>
@@ -817,7 +817,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
  <table width="300" border="0">
  <thead><td colspan="2" align="center">Metric with Test Set of Ten Labels</td></thead>
  <tbody>
- <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Test_Set/Metric_ten_part_1.png" 
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/results/Metric_Test_Set/Metric_ten_part_1.png" 
  height = "300" width = "300"></td>
  <td valign="top">
  <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Test_Set/Metric_ten_part_2.png" 
@@ -828,7 +828,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
  <div align="center">
  <table width="300" border="0">
  <tbody>
- <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Test_Set/Metric_ten_part_3.png"
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/results/Metric_Test_Set/Metric_ten_part_3.png"
  height = "100" width = "400"></td>
  </tbody>
  </table>
@@ -848,10 +848,10 @@ def best_result(self, x_test, y_test, clf, x_predict):
  <div align="center">
  <table width="200" border="0">
  <tbody>
- <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_Result_Images/Figure_1.png" 
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/results/Best_Result_Images/Figure_1.png" 
  height = "200" width = "200"></td>
  <td valign="top">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_Result_Images/Figure_2.png" 
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/results/Best_Result_Images/Figure_2.png" 
  height = "200" width = "200"></td>
  </tbody>
  </table>
@@ -860,10 +860,10 @@ def best_result(self, x_test, y_test, clf, x_predict):
 <div align="center">
  <table width="200" border="0">
  <tbody>
- <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_Result_Images/Figure_3.png" 
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/results/Best_Result_Images/Figure_3.png" 
  height = "200" width = "200"></td>
  <td valign="top">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_Result_Images/Figure_4.png" 
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/results/Best_Result_Images/Figure_4.png" 
  height = "200" width = "200"></td>
  </tbody>
  </table>
@@ -872,10 +872,10 @@ def best_result(self, x_test, y_test, clf, x_predict):
 <div align="center">
  <table width="200" border="0">
  <tbody>
- <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_Result_Images/Figure_5.png" 
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/results/Best_Result_Images/Figure_5.png" 
  height = "200" width = "200"></td>
  <td valign="top">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_Result_Images/Figure_6.png" 
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/results/Best_Result_Images/Figure_6.png" 
  height = "200" width = "200"></td>
  </tbody>
  </table>
