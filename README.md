@@ -744,7 +744,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
  #Risultati Metric with Validation Set
  <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Validation_set/Metric_best_neur_part_1.png" 
  height = "200" width = "200">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Validation_set/Metric_best_neur_part_1.png" 
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Validation_Set/Metric_best_neur_part_1.png" 
  height = "200" width = "200">
 
  #Risultati Metric with Test Set
