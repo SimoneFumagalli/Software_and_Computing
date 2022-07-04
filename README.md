@@ -762,8 +762,8 @@ def best_result(self, x_test, y_test, clf, x_predict):
  </table>
  </div>
  <p>
- <p>
  
+ </p>
  <div align="center">
  <table width="300" border="0">
  <thead><td colspan="2" align="center">Metric with Test Set</td></thead>
