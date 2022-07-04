@@ -743,11 +743,11 @@ def best_result(self, x_test, y_test, clf, x_predict):
  ```
  #Risultati Metric with Validation Set
  <div align = "center">
- <table cellspacing="2" cellpadding="2" width="400" border="0">
+ <table cellspacing="2" cellpadding="2" width="200" border="0">
  <tbody>
  <tr><td valign="top">
  <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Validation_Set/Metric_best_neur_part_1.png" 
- height = "300" width = "300"> </td>
+ height = "200" width = "200"></td>
  <td valign="top">
  <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Validation_Set/Metric_best_neur_part_2.png" 
  height = "200" width = "200"> <td>
