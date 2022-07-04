@@ -747,7 +747,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
  <tbody>
  <tr>
  <th>Metric with Validation Set</th>
- <td valign="top" colspan="2">
+ <td colspan="2">
  <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Validation_Set/Metric_best_neur_part_1.png" 
  height = "300" width = "300"></td>
  <td valign="top">
