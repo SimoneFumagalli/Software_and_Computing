@@ -739,7 +739,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
  The `Metric` function then can be used, obtaining the performance of the different models, indicating the best result.
  
  ```python
- metrics = clas.Metrics(y_test, clas)
+ metrics = clas.Metrics(y_test, multiple_clas)
  ```
  <div align="center">
  <table width="300" border="0">
@@ -761,8 +761,8 @@ def best_result(self, x_test, y_test, clf, x_predict):
  </tbody>
  </table>
  </div>
-<p>
-<p>
+ <p>
+ <p>
  
  <div align="center">
  <table width="300" border="0">
