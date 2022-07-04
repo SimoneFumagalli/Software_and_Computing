@@ -704,12 +704,32 @@ def best_result(self, x_test, y_test, clf, x_predict):
  Then the `neuron_graphs` function must be called and, depending on the `number_attempts`, a certain number of output will be shown. Every single result will be equal to that in case just `neuron_configuration` is used.
  
  ```python
- ne = clas.neuron_graphs(x_train)
+ n_conf = clas.neuron_graphs(x_train)
  ```
 
- #ALMENO 4 IMMAGINI DI NEURONI CONFIGURATI
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/Simulation_images/Fitting_Epochs.png" 
- height = "350" width = "350">
+ <div align="center">
+ <table width="300" border="0">
+ <thead><td colspan="2" align="center">First Two Models </td></thead>
+ <tbody>
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Neuron_config/Figure_1.png" 
+ height = "300" width = "300"></td>
+ <td valign="top">
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Neuron_config/Figure_2.png" 
+ height = "300" width = "300"></td>
+ </tbody>
+ </table>
+ <div align="center">
+ <table width="300" border="0">
+ <thead><td colspan="2" align="center">Last Two Models</td></thead>
+ <tbody>
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Neuron_config/Figure_3.png" 
+ height = "300" width = "300"></td>
+ <td valign="top">
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Neuron_config/Figure_4.png" 
+ height = "300" width = "300"></td>
+ </tbody>
+ </table>
+ </div>
 
  #### Classification and Performance
  At this point, the parameters and the model must be re-assigned.
@@ -806,13 +826,12 @@ def best_result(self, x_test, y_test, clf, x_predict):
  <div align="center">
  <table width="300" border="0">
  <tbody>
- <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Test_Set/Metric_best_ten_3.png" 
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Metric_Test_Set/Metric_ten_3.png" 
  height = "100" width = "400"></td>
  </tbody>
  </table>
  </div>
 
- 
  The best result between the considered models is:
  ```python
  output = 1000
