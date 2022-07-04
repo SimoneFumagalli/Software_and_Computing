@@ -848,10 +848,10 @@ def best_result(self, x_test, y_test, clf, x_predict):
  <div align="center">
  <table width="200" border="0">
  <tbody>
- <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_result_Images/Figure_1.png" 
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_Result_Images/Figure_1.png" 
  height = "200" width = "200"></td>
  <td valign="top">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_result_Images/Figure_2.png" 
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_Result_Images/Figure_2.png" 
  height = "300" width = "300"></td>
  </tbody>
  </table>
@@ -860,10 +860,10 @@ def best_result(self, x_test, y_test, clf, x_predict):
 <div align="center">
  <table width="200" border="0">
  <tbody>
- <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_result_Images/Figure_3.png" 
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_Result_Images/Figure_3.png" 
  height = "200" width = "200"></td>
  <td valign="top">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_result_Images/Figure_4.png" 
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_Result_Images/Figure_4.png" 
  height = "300" width = "300"></td>
  </tbody>
  </table>
@@ -872,10 +872,10 @@ def best_result(self, x_test, y_test, clf, x_predict):
 <div align="center">
  <table width="200" border="0">
  <tbody>
- <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_result_Images/Figure_5.png" 
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_Result_Images/Figure_5.png" 
  height = "200" width = "200"></td>
  <td valign="top">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_result_Images/Figure_6.png" 
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Classification/results/Best_Result_Images/Figure_6.png" 
  height = "300" width = "300"></td>
  </tbody>
  </table>
