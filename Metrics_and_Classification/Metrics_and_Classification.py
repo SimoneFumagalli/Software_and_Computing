@@ -632,13 +632,13 @@ if __name__ == "__main":
     
     X, y = fetch_openml(name='Fashion-MNIST', version=1, data_id=None, return_X_y=True)
 
-    out = [100]
-    epoc = [10000]
-    bat = [61250]
-    wei = [GlorotUniform()]
-    num = 1
-    opti = [SGD(lr=3e-2)]
-    strength = [-0.001]
+    out = [1000]
+    epoc = [250, 600, 700, 800]
+    bat = [61250,61250,61250,61250]
+    wei = [GlorotUniform(),GlorotUniform(),GlorotUniform(),GlorotUniform()]
+    num = 4
+    opti = [SGD(lr=1e-2), SGD(lr=3e-2), SGD(lr=1e-2), SGD(lr=1e-2)]
+    strength = [1.5,-0.09, 1, 1]
 
     go = Classification(out, bat, wei, num, opti, strength, epoc)
     
@@ -651,4 +651,4 @@ if __name__ == "__main":
     print()
     print('Classification beginning')
     print()
-    clas = go.clf(x_train, y_train, x_test,y_test)
+    clas = go.clf(3,x_train, y_train, x_test,y_test)
