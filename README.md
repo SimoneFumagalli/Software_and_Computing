@@ -691,7 +691,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
  bat = [61250,61250,61250,61250]
  wei = [GlorotUniform(),GlorotNormal(),GlorotNormal(),GlorotNormal()]
  num = 4
- opti = [SGD(lr=1e-2), SGD(lr=3e-2),, SGD(lr=1e-2), SGD(lr=1e-2)]
+ opti = [SGD(lr=1e-2), SGD(lr=3e-2), SGD(lr=1e-2), SGD(lr=1e-2)]
  strenght = [1.5,-0.09, 1, 1]
  clas = Classification(out, bat, wei, num, opti, strenght, epoc)
  ```
