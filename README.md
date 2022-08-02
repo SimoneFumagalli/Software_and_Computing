@@ -36,9 +36,9 @@ For further details, look at this site [here](http://scholarpedia.org/article/BC
 
 In order to work with the BCM model, the plasticity package must be downloaded at this [link](https://github.com/Nico-Curti/plasticity), created by Nico Curti et al. on GitHub. At this link, information about the download of the plasticity package, implementation and parameters value can be found.
 
-Once the installation of the Python version of the Plasticity package has been performed, download also the Metrics_and_Classification folder, in which are contained the Metrics_and_Classification and testing files, together with the results folder
+Once the installation of the Python version of the Plasticity package has been performed, download also the Metrics_and_Classification folder, in which are contained the Metrics_and_Classification and testing files, together with the `result` folder.
 
-In the next paragraphs, just an explanation of the code is shown. If interested in how to use these scripts and to see some outputs, go to the `result` folder. 
+In the next paragraphs, just an explanation of the code is shown. If interested in how to use these scripts and to see some outputs, go to the `result` folder and paragraph. 
 
 ### Metrics_and_Classification
 
