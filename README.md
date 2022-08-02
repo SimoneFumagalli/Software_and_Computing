@@ -8,14 +8,14 @@
 ## Theory
 
 The model at the basis of this work is called BCM (Bienenstock, Cooper and Munro) theory that refers to the synaptic modification first proposed in 1982.
-The BCM theory inserts inside the synaptic plasticity field, that is a process in which the synapses change their efficacy according to their previous acitivities.
+The BCM theory inserts inside the synaptic plasticity field, that is a process in which the synapses change their efficacy according to their previous actiivities.
 Starting from this notion, Donald Hebb proposed a form of synaptic plasticity driven by the pre- and postsynaptic activity.
 He postulated that a repeated and persistent stimulation of a postsynaptic cell from a presynaptic ones increases its strength, known as Hebb's Rule.
 
 This theory of synaptic plasticity is based on three postulates:
 
 * The change in synaptic weights  <img src="https://latex.codecogs.com/gif.image?\small&space;\dpi{110}dw_i/dt" title="https://latex.codecogs.com/gif.image?\small \dpi{110}dw_i/dt" />  is proportional to presynaptic activity <img src="https://latex.codecogs.com/gif.image?\small&space;\dpi{110}x_i" title="https://latex.codecogs.com/gif.image?\small \dpi{110}x_i" />;
-* This change is also proportional to a non-monotonic function <img src="https://latex.codecogs.com/gif.image?\small&space;\dpi{110}\phi" title="https://latex.codecogs.com/gif.image?\small \dpi{110}\phi" /> of the postsynaptic activity <img src="https://latex.codecogs.com/gif.image?\small&space;\dpi{110}y" title="https://latex.codecogs.com/gif.image?\small \dpi{110}y" />. It has two different behaviours according to the postsynaptic activity: it decreses for low y and increases for higher <img src="https://latex.codecogs.com/gif.image?\small&space;\dpi{110}y" title="https://latex.codecogs.com/gif.image?\small \dpi{110}y" />;
+* This change is also proportional to a non-monotonic function <img src="https://latex.codecogs.com/gif.image?\small&space;\dpi{110}\phi" title="https://latex.codecogs.com/gif.image?\small \dpi{110}\phi" /> of the postsynaptic activity <img src="https://latex.codecogs.com/gif.image?\small&space;\dpi{110}y" title="https://latex.codecogs.com/gif.image?\small \dpi{110}y" />. It has two different behaviours according to the postsynaptic activity: it decreases for low y and increases for higher <img src="https://latex.codecogs.com/gif.image?\small&space;\dpi{110}y" title="https://latex.codecogs.com/gif.image?\small \dpi{110}y" />;
 * The modification threshold, indicated with <img src="https://latex.codecogs.com/png.image?\dpi{110}\theta" title="https://latex.codecogs.com/png.image?\dpi{110}\theta" /> and corresponding to a variation higher than zero, is itself a superlinear function of the history of postsynaptic activity <img src="https://latex.codecogs.com/gif.image?\small&space;\dpi{110}y" title="https://latex.codecogs.com/gif.image?\small \dpi{110}y" />.
 
 More generally, BCM model proposes a sliding threshold for long-term potentiation (LTP) and long-term depression (LTD) induction, stating that synaptic plasticity is stabilized by a dynamic adaptation of the time-averaged post-synaptic activity.
@@ -36,7 +36,7 @@ For further details, look at this site [here](http://scholarpedia.org/article/BC
 
 In order to work with the BCM model, the plasticity package must be downloaded at this [link](https://github.com/Nico-Curti/plasticity), created by Nico Curti et al. on GitHub. At this link, information about the download of the plasticity package, implementation and parameters value can be found.
 
-Once the installation of the Python version of the Plasticity package has been performed, download also the Classification_and_Metrics folder, in which are contained the Metrics_and_Clasisfication and testing files, together with the results folder
+Once the installation of the Python version of the Plasticity package has been performed, download also the Metrics_and_Classification folder, in which are contained the Metrics_and_Classification and testing files, together with the results folder
 
 In the next paragraphs, just an explanation of the code is shown. If interested in how to use these scripts and to see some outputs, go to the `result` folder. 
 
@@ -118,7 +118,7 @@ def Variable_Split(self, X, y, fraction: float):
             y_train,\
             y_test
 ```
-* The `modelizzation` function is used to generate the model, according to the element `i` of the arrays choosen.
+* The `modellizzation` function is used to generate the model, according to the element `i` of the array chosen.
 ```python
 def modellization(self, i):
     '''
@@ -277,7 +277,7 @@ def top_ten(self, fitted_model, prevision):
             top_10.append(counter_lab)
         return top_10
 ```
-* `checking_y_size` function is used to control the dimension of size of the y used in the classification function since the validation size can change the size of the train set. It's just considered the y size since it's variability can cause problems in the `single_performance` function.
+* `checking_y_size` function is used to control the dimension of size of the y used in the classification function since the validation size can change the size of the train set. It's just consider the y size since it's variability can cause problems in the `single_performance` function.
 
 ```python
 def checking_y_size(self, y_test, clf):
@@ -423,7 +423,7 @@ def neuron_graphs(self, x_train):
         graphs = self.neurons_configuration(fits[i]) # Use of neurons_configuration function
 ```
 
-* The `clf` function is used to make the classification and prediction of a single model, in order to reduce so the number of function to implement in the script. An example can be seen in the `Simulation` paragraph.
+* The `clf` function is used to make the classification and prediction of a single model, in order to reduce so the number of function to implement in the script. An example can be seen in the `Result` paragraph.
 ```python
 def clf(self, i, x_train, x_test, y_train, y_test, validation_size: float = None):
     '''
@@ -663,7 +663,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
 ### Results
  The `results` folder contains the best results obtained using different parameters of the Plasticity package.
  The `multiple_clf`function has been used, with and without the validation set.
- At first, the `BCM_Classification` must be imported,
+ At first, the `Classification` must be imported,
  together with the Fashion-Mnist and the `fetch_openml` from the `sklearn.datasets`.
  Then, the Fashion-MNIST dataset must be imported and assigned to the variables X and y.
 
@@ -674,7 +674,7 @@ def best_result(self, x_test, y_test, clf, x_predict):
 
  from plasticity.model.weights import GlorotNormal, HeNormal, Uniform, LecunUniform, GlorotUniform, LecunNormal, HeUniform, Orthogonal, TruncatedNormal
 
- from BCM_classification import Classification
+ from Metrics_and_Classification import Classification
 
  X, y = fetch_openml(name='Fashion-MNIST', version=1,  data_id=None, return_X_y=True)
  ```

@@ -16,7 +16,7 @@ from plasticity.model.weights import GlorotNormal, HeNormal, Uniform,\
                                      HeUniform, Orthogonal, TruncatedNormal
 
 
-from BCM_classification import Classification
+from Metrics_and_Classification import Classification
 
 X, y = fetch_openml(name='mnist_784', version=1, data_id=None, return_X_y=True)
 
