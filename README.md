@@ -118,7 +118,7 @@ def Variable_Split(self, X, y, fraction: float):
             y_train,\
             y_test
 ```
-* The `modellizzation` function is used to generate the model, according to the element `i` of the array chosen.
+* The `modellization` function is used to generate the model, according to the element `i` of the array chosen.
 ```python
 def modellization(self, i):
     '''
