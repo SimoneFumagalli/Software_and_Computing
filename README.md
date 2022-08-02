@@ -36,9 +36,9 @@ For further details, look at this site [here](http://scholarpedia.org/article/BC
 
 In order to work with the BCM model, the plasticity package must be downloaded at this [link](https://github.com/Nico-Curti/plasticity), created by Nico Curti et al. on GitHub. At this link, information about the download of the plasticity package, implementation and parameters value can be found.
 
-Once the installation of the Python version of the Plasticity package has been performed, download also the Metrics_and_Classification folder, in which are contained the Metrics_and_Classification and testing files, together with the `result` folder.
+Once the installation of the Python version of the Plasticity package has been performed, download also the `Metrics_and_Classification` folder, in which are contained the Metrics_and_Classification and testing files, together with the `results` folder.
 
-In the next paragraphs, just an explanation of the code is shown. If interested in how to use these scripts and to see some outputs, go to the `result` folder and paragraph. 
+In the next paragraphs, just an explanation of the code is shown. If interested in how to use these scripts and to see some outputs, go to the `results` folder and paragraph. 
 
 ### Metrics_and_Classification
 
@@ -145,7 +145,7 @@ def modellization(self, i):
                 random_state=42)]
     return model
 ```
-The value's parameters used here are just an example.
+The values of parameters used here are just an example.
 
 * The `fitting` function uses the model previously created to train the neurons.
 
@@ -313,7 +313,7 @@ def checking_y_size(self, y_test, clf):
     return y_test
 ```
 
-* `checking_y_labels` is the function used to control the form of the labels used, either one or in the form of ten labels, necessary to study the accuracy.
+* `checking_y_labels` is the function used to control the form of the labels, either one or in the form of ten labels, necessary to study the accuracy.
 
 ```python
 def checking_y_labels(self, clf, ten_label = False):
@@ -347,7 +347,7 @@ def checking_y_labels(self, clf, ten_label = False):
     return y_to_test
 ```
 
-* `checking_batch` is the function to control the size of the batch, always due to the presence of the possibility to validate the model. In that case, the size of the X and y sets are reduced and so the batch must be control to not be higher than the new size of the two parameters.
+* `checking_batch` is the function to control the size of the batch, always due to the presence of the possibility to validate the model. In that case, the size of the X and y sets are reduced and so the batch must be controlled to not be higher than the new size of the two parameters.
 
 ```python
 def checking_batch(self,i, y_train):
@@ -383,7 +383,7 @@ def checking_batch(self,i, y_train):
     return self.batch[i]
 ```
 
-* `neurons_configuration` is the function to observe the acquired form of the neurons, but for just one model. In order to observe more models'configurations, the `neurons_graphs` has been written.
+* `neurons_configuration` is the function to observe the acquired form of the neurons, but for just one model. In order to observe more models' configurations, the `neurons_graphs` has been written. In the last case, the `modellization` and `fitting` functions don't need to be written since they are already contained in the `neuron_graphs` function.
 
 ```python
 def neurons_configuration(self, fitted_model):
@@ -423,7 +423,7 @@ def neuron_graphs(self, x_train):
         graphs = self.neurons_configuration(fits[i]) # Use of neurons_configuration function
 ```
 
-* The `clf` function is used to make the classification and prediction of a single model, in order to reduce so the number of function to implement in the script. An example can be seen in the `Result` paragraph.
+* The `clf` function is used to make the classification and prediction of a single model, in order to reduce so the number of functions to implement in the script. An example can be seen in the `Result` paragraph.
 ```python
 def clf(self, i, x_train, x_test, y_train, y_test, validation_size: float = None):
     '''
@@ -510,7 +510,7 @@ def single_Metric(self, i, y_test, clf, ten_label = False):
     -------
     accuracy_values: List
         List of floats corresponding to the accuracies measured.
-    Classification report: str
+    classification_report(y_test, y_to_test, zero_division = 0): str
         List of complete classification report.
 
     '''
@@ -558,8 +558,7 @@ def multiple_clf(self, x_train, x_test, y_train, y_test, v_s = None):
         y_test : List
             Test set of labels.
         v_s : float, optional
-            Fraction describing the further splitting of the train set if v_s
-            is True. The default is None.
+            Fraction describing the further splitting of the train set. The default is None.
 
         Returns
         -------
@@ -588,7 +587,8 @@ def Metrics(self, y_test, multiple_clf, ten_label = False):
             Test set of labels.
         
         multiple_clf: list
-            LIst of output from the multiple classification function.
+            List of output from the multiple classification function.
+
         ten_label : bool, optional
             The default is False.
 
@@ -614,7 +614,7 @@ def Metrics(self, y_test, multiple_clf, ten_label = False):
         return accuracy_values
 ```
 
-* The `best_result` function is used to shown the input image and the obtained result using a model. If one want to use the multiple classification function, insert the corresponding set of model, like clf[0] or clf[1] and so on.
+* The `best_result` function is used to show the input image and the obtained result using a model. If one wants to use the multiple classification function, insert the corresponding set of model, like clf[0] or clf[1] and so on.
 
 ```python
 def best_result(self, x_test, y_test, clf, x_predict):
@@ -636,9 +636,9 @@ def best_result(self, x_test, y_test, clf, x_predict):
         Returns
         -------
         label : Int
-            label of the best neuron.
+            Label of the best neuron.
         Ten_label: List
-            labels of the ten best neuron.
+            Labels of the ten best neuron.
 
         '''   
         nc = np.amax(np.abs(clf[3][0].weights))
