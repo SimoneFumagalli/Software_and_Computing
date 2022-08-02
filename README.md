@@ -36,11 +36,11 @@ For further details, look at this site [here](http://scholarpedia.org/article/BC
 
 In order to work with the BCM model, the plasticity package must be downloaded at this [link](https://github.com/Nico-Curti/plasticity), created by Nico Curti et al. on GitHub. At this link, information about the download of the plasticity package, implementation and parameters value can be found.
 
-Once the installation of the Python version of the Plasticity package has been performed, download also the Classification folder, in which are contained the BCM_Classification, testing and simulation files.
+Once the installation of the Python version of the Plasticity package has been performed, download also the Classification_and_Metrics folder, in which are contained the Metrics_and_Clasisfication and testing files, together with the results folder
 
-In the next paragraphs, just an explanation of the code is shown. If interested in how to use these scripts and to see some outputs, go to `Simulation`. 
+In the next paragraphs, just an explanation of the code is shown. If interested in how to use these scripts and to see some outputs, go to the `result` folder. 
 
-### BCM_Classification
+### Metrics_and_Classification
 
 This script contains the `class` and the functions useful to classify the Fashion-MNIST dataset obtained through fetch_openml().
 Also, since the BCM functions are incompatible with the `cross_val_score` and similar methods, the Class contains the functions useful to validate the data.
