@@ -8,7 +8,7 @@
 ## Theory
 
 The model at the basis of this work is called BCM (Bienenstock, Cooper and Munro) theory that refers to the synaptic modification first proposed in 1982.
-The BCM theory inserts inside the synaptic plasticity field, that is a process in which the synapses change their efficacy according to their previous actiivities.
+The BCM theory inserts inside the synaptic plasticity field, that is a process in which the synapses change their efficacy according to their previous activities.
 Starting from this notion, Donald Hebb proposed a form of synaptic plasticity driven by the pre- and postsynaptic activity.
 He postulated that a repeated and persistent stimulation of a postsynaptic cell from a presynaptic ones increases its strength, known as Hebb's Rule.
 
