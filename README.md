@@ -54,7 +54,7 @@ The inputs are the following:
 - interaction_strength: it represents the interaction_strength parameter of plasticity package;
 - number_epoch: it represents the number of epoch for the training phase.
 
-* At first, the `Variable_Reshape` function has been constructed in order to reshape the inputs, X and y. The X corresponds to the image with the number drawn, while the y represents the label corresponding to the image.
+* At first, the `Variable_Reshape` function has been constructed in order to reshape the inputs, X and y. The X corresponds to the image, while the y represents the label corresponding to the image.
 
 ```python
 def Variable_Reshape(self,X,y):
