@@ -14,7 +14,8 @@ def __del__(self):
 def check_number_training(clf_times):
         n_splits = getattr(val_sets, 'n_splits')
         if clf_times > n_splits:
-            raise Exception("The number of train  must be lower or equal to "
+            raise Exception("The number of times to operate the classification"
+                            " must be lower or equal to "
                             "the number of splitting")
             return None
         else:
