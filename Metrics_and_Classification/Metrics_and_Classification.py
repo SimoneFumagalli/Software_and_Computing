@@ -18,11 +18,6 @@ from sklearn.metrics import classification_report
 import pylab as plt
 from collections import Counter
 
-
-def __del__(self):
-    print(" ")
-
-
 def check_label_type(resulting_labels, ten_label_type:bool = False):
     one_label, top_ten_labels = resulting_labels
     if ten_label_type == False:
