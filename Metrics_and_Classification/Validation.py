@@ -11,14 +11,14 @@ import Classification
 def __del__(self):
     print(" ")
     
-def check_number_training(train_numbers):
+def check_number_training(clf_times):
         n_splits = getattr(val_sets, 'n_splits')
-        if train_numbers > n_splits:
-            raise Exception("The number of train steps must be lower or equal to "
+        if clf_times > n_splits:
+            raise Exception("The number of train  must be lower or equal to "
                             "the number of splitting")
             return None
         else:
-            return train_numbers  
+            return clf_times  
 
 def val_sets(x_train,y_train, n_splits:int = 2):
     setattr(val_sets, 'n_splits', n_splits)
@@ -39,14 +39,14 @@ def val_sets(x_train,y_train, n_splits:int = 2):
         
     return x_train_val, x_test_val, y_train_val, y_test_val
 
-def val_classification(model, validation_sets, train_numbers: int):
+def val_classification(model, validation_sets, clf_times: int):
     
     x_train, x_test, y_train, y_test = validation_sets
     classifiers = []
     
-    train_numbers = check_number_training(train_numbers)
+    clf_times = check_number_training(clf_times)
     
-    for i in range(train_numbers):
+    for i in range(clf_times):
         classifier = Classification.clf(model, x_train[i], x_test[i],\
                                         y_train[i], y_test[i])
         classifiers.append(classifier)
