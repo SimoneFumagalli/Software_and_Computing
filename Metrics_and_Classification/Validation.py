@@ -12,7 +12,7 @@ def __del__(self):
     print(" ")
     
 def check_number_training(train_numbers):
-        n_splits = getattr(Classification.val_sets, 'n_splits')
+        n_splits = getattr(validation_sets, 'n_splits')
         if train_numbers > n_splits:
             raise Exception("The number of train steps must be lower or equal to "
                             "the number of splitting")
