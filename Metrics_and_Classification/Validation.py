@@ -10,8 +10,18 @@ import Classification
 
 def __del__(self):
     print(" ")
-def validation_sets(x_train,y_train, n_splits:int = 2):
     
+def check_number_training(train_numbers):
+        n_splits = getattr(Classification.val_sets, 'n_splits')
+        if train_numbers > n_splits:
+            raise Exception("The number of train steps must be lower or equal to "
+                            "the number of splitting")
+            return None
+        else:
+            return train_numbers  
+
+def validation_sets(x_train,y_train, n_splits:int = 2):
+    setattr(Classification.val_sets, 'n_splits', n_splits)
     skf = StratifiedKFold(n_splits)
 
     x_train_val, x_test_val, y_train_val, y_test_val = [],[],[],[]
@@ -29,14 +39,14 @@ def validation_sets(x_train,y_train, n_splits:int = 2):
         
     return x_train_val, x_test_val, y_train_val, y_test_val
 
-def val_classification(model, validation_sets, train_steps: int):
+def val_classification(model, validation_sets, train_numbers: int):
     
     x_train, x_test, y_train, y_test = validation_sets
     classifiers = []
     
-    train_steps = Classification.check_training_steps(train_steps)
+    train_numbers = Classification.check_number_training(train_numbers)
     
-    for i in range(train_steps):
+    for i in range(train_numbers):
         classifier = Classification.clf(model, x_train[i], x_test[i],\
                                         y_train[i], y_test[i])
         classifiers.append(classifier)
