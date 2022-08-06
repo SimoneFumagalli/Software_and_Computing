@@ -22,6 +22,16 @@ from sklearn.model_selection import StratifiedKFold
 def __del__(self):
     print(" ")
 
+
+def check_label_type(resulting_labels, ten_label_type:bool = False):
+    if ten_label_type == False:
+        y_to_test = resulting_labels[0]
+    else:
+        y_to_test = [resulting_labels[1][x][0][0] for x in range (len(resulting_labels[1]))]
+    return y_to_test
+
+
+
 def Variable_Reshape(X,y):
     X_norm=X*(1./255) # Normalization of the X inputs in range [0,1]
     
