@@ -31,3 +31,41 @@ def Variable_Reshape(X,y):
     y_transform = OneHotEncoder(sparse=False).fit_transform(y_reshape)
     return X_norm, y_transform
 
+def clf(model, x_train, x_test, y_train, y_test):
+    
+    #Checking the batch size
+    #model.batch_size = checking_batch(model,y_train)
+    # Use of fitting function
+    fitted_model = model.fit(x_train,y_train) 
+    # Use of prevision function
+    prediction = model.predict(x_test, y = np.zeros_like(y_test))
+    
+    return fitted_model, prediction
+
+def top_ten(classifier):
+    top_10 = []
+    fitted_model, prevision = classifier
+    labels = fitted_model.weights[:,28*28:].argmax(axis=1) # Labels of the 100 neurons
+    
+    for x in prevision:
+         
+        # Union of prevision score and neuron
+        sorting = sorted(zip(x, labels),\
+                         key=lambda x : x[0], reverse=True)[:10]
+        sorting = [x[1] for x in sorting]    
+        # Counting how many of the ten neurons give the same label as result
+        counter_lab = (Counter(sorting).most_common())
+        top_10.append(counter_lab)
+    
+    return top_10
+
+def resulting_labels(classifier):
+    fitted_model, prevision = classifier
+    labels = [fitted_model.weights[np.argmax(x)][28*28:].argmax() 
+             for x in prevision]
+    
+
+    # Use of top_ten function
+    top_10_array = top_ten(classifier)
+    
+    return labels, top_10_array    
