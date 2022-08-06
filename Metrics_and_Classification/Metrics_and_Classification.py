@@ -17,7 +17,7 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics import classification_report
 import pylab as plt
 from collections import Counter
-from sklearn.model_selection import StratifiedKFold
+
 
 def __del__(self):
     print(" ")
