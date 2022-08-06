@@ -44,10 +44,10 @@ def clf(model, x_train, x_test, y_train, y_test):
 
 def top_ten(classifier):
     top_10 = []
-    fitted_model, prevision = classifier
+    fitted_model, prediction = classifier
     labels = fitted_model.weights[:,28*28:].argmax(axis=1) # Labels of the 100 neurons
     
-    for x in prevision:
+    for x in prediction:
          
         # Union of prevision score and neuron
         sorting = sorted(zip(x, labels),\
@@ -60,12 +60,34 @@ def top_ten(classifier):
     return top_10
 
 def resulting_labels(classifier):
-    fitted_model, prevision = classifier
+    fitted_model, prediction = classifier
     labels = [fitted_model.weights[np.argmax(x)][28*28:].argmax() 
-             for x in prevision]
+             for x in prediction]
     
 
     # Use of top_ten function
     top_10_array = top_ten(classifier)
     
-    return labels, top_10_array    
+    return labels, top_10_array
+
+def plot_best_result(x_test, y_test, classifier, resulting_labels, x_predict):
+    fitted_model, prediction = classifier
+    nc = np.amax(np.abs(fitted_model.weights))
+    label = resulting_labels[0][x_predict]
+    top_ten_label = resulting_labels[1][x_predict]
+    best_result = fitted_model.weights[np.argmax(prediction[x_predict])][:28*28].reshape(28, 28)
+    
+    fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(12, 12))
+    ax1.set_title('Image from the Fashion-MNIST dataset: {:d}'.format(y_test[x_predict].argmax()))
+    ax1.imshow(x_test.values[x_predict].reshape(28, 28), cmap='gray'); ax1.axis('off')
+    
+    ax2.set_title('Prediction using BCM: {:d}'.format(label))
+    ax2.imshow(best_result, cmap='bwr', vmin=-nc, vmax=nc); ax2.axis('off')
+    
+    fig.text(0.5, 0.24, 'Ten best neuron result: {}'.format(top_ten_label),
+             horizontalalignment='center', fontsize = 14)
+    
+    return None
+
+
+    
