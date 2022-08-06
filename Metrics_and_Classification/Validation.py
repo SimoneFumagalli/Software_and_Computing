@@ -12,7 +12,7 @@ def __del__(self):
     print(" ")
     
 def check_number_training(train_numbers):
-        n_splits = getattr(validation_sets, 'n_splits')
+        n_splits = getattr(val_sets, 'n_splits')
         if train_numbers > n_splits:
             raise Exception("The number of train steps must be lower or equal to "
                             "the number of splitting")
@@ -20,7 +20,7 @@ def check_number_training(train_numbers):
         else:
             return train_numbers  
 
-def validation_sets(x_train,y_train, n_splits:int = 2):
+def val_sets(x_train,y_train, n_splits:int = 2):
     setattr(Classification.val_sets, 'n_splits', n_splits)
     skf = StratifiedKFold(n_splits)
 
