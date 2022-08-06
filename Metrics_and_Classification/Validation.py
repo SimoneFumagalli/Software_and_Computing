@@ -8,6 +8,8 @@ Created on Sat Aug  6 15:23:51 2022
 from sklearn.model_selection import StratifiedKFold
 import Metrics_and_Classification
 
+def __del__(self):
+    print(" ")
 def validation_sets(x_train,y_train, n_splits:int = 2):
     
     skf = StratifiedKFold(n_splits)
