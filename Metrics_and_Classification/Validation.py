@@ -6,7 +6,7 @@ Created on Sat Aug  6 15:23:51 2022
 """
 
 from sklearn.model_selection import StratifiedKFold
-import Metrics_and_Classification
+import Classification
 
 def __del__(self):
     print(" ")
@@ -28,3 +28,18 @@ def validation_sets(x_train,y_train, n_splits:int = 2):
         y_test_val.append(y_test_)
         
     return x_train_val, x_test_val, y_train_val, y_test_val
+
+def val_classification(model, validation_sets, train_steps: int):
+    
+    x_train, x_test, y_train, y_test = validation_sets
+    classifiers = []
+    
+    train_steps = Classification.check_training_steps(train_steps)
+    
+    for i in range(train_steps):
+        classifier = Classification.clf(model, x_train[i], x_test[i],\
+                                        y_train[i], y_test[i])
+        classifiers.append(classifier)
+        __del__(classifier)
+    return classifiers
+
