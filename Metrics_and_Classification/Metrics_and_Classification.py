@@ -89,5 +89,18 @@ def plot_best_result(x_test, y_test, classifier, resulting_labels, x_predict):
     
     return None
 
-
+def Metrics(classifier, y_test, ten_label_type:bool = False):
+    result_labels = resulting_labels(classifier)
+    y_labels = check_label_type(result_labels)
+    y_test = y_test.argmax(axis=1)
     
+    performance = classification_report(y_test, y_labels, 
+                                         zero_division = 0,
+                                         output_dict = True)
+    print(classification_report(y_test, y_labels,
+                                   zero_division = 0))
+    
+    accuracy_values = performance['accuracy']
+    
+    return accuracy_values, performance
+
