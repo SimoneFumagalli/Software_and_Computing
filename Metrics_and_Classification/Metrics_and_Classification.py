@@ -24,13 +24,22 @@ def __del__(self):
 
 
 def check_label_type(resulting_labels, ten_label_type:bool = False):
+    one_label, top_ten_labels = resulting_labels
     if ten_label_type == False:
-        y_to_test = resulting_labels[0]
+        y_to_test = one_label
     else:
-        y_to_test = [resulting_labels[1][x][0][0] for x in range (len(resulting_labels[1]))]
+        y_to_test = [top_ten_labels[x][0][0] for x in range (len(resulting_labels[1]))]
     return y_to_test
 
-
+def checking_batch_size(model, y_train):
+    if model.batch_size > len(y_train):
+        print('The dimension of the batch',model.batch_size,'is much higher '
+              'than that of the samples',len(y_train),'.\
+              This last has been considered.')
+        model.batch_size = len(y_train)
+    else:
+        model.batch_size = model.batch_size
+    return model.batch_size
 
 def Variable_Reshape(X,y):
     X_norm=X*(1./255) # Normalization of the X inputs in range [0,1]
