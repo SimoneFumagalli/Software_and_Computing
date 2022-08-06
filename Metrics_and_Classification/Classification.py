@@ -48,7 +48,7 @@ def Variable_Reshape(X,y):
 def clf(model, x_train, x_test, y_train, y_test):
     
     #Checking the batch size
-    #model.batch_size = checking_batch(model,y_train)
+    model.batch_size = checking_batch_size(model,y_train)
     # Use of fitting function
     fitted_model = model.fit(x_train,y_train) 
     # Use of prevision function

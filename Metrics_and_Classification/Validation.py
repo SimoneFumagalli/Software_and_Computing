@@ -21,7 +21,7 @@ def check_number_training(train_numbers):
             return train_numbers  
 
 def val_sets(x_train,y_train, n_splits:int = 2):
-    setattr(Classification.val_sets, 'n_splits', n_splits)
+    setattr(val_sets, 'n_splits', n_splits)
     skf = StratifiedKFold(n_splits)
 
     x_train_val, x_test_val, y_train_val, y_test_val = [],[],[],[]
@@ -44,7 +44,7 @@ def val_classification(model, validation_sets, train_numbers: int):
     x_train, x_test, y_train, y_test = validation_sets
     classifiers = []
     
-    train_numbers = Classification.check_number_training(train_numbers)
+    train_numbers = check_number_training(train_numbers)
     
     for i in range(train_numbers):
         classifier = Classification.clf(model, x_train[i], x_test[i],\
