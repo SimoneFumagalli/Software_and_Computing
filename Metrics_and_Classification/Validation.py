@@ -6,7 +6,7 @@ Created on Sat Aug  6 15:23:51 2022
 """
 
 from sklearn.model_selection import StratifiedKFold
-from myproject.Metrics_and_Classification import Classification
+from Metrics_and_Classification import Classification
 
 def __del__(self):
     print(" ")
