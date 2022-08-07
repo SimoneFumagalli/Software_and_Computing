@@ -26,7 +26,7 @@ def checking_batch_size(model, y_train):
     Parameters
     ----------
     model : BCM model
-        Model to use for the classification.
+        Model used for the classification.
     y_train : array
         Ndarray containing the list of labels used for training the model.
 
@@ -80,13 +80,13 @@ def clf(model, x_train, x_test, y_train, y_test):
     Parameters
     ----------
     model : BCM model
-        Model to use for the classification.
+        Model used for the classification.
     x_train : Dataframe
-        Dataframe of the input X to use for training the model.
+        Dataframe of the input X used for training the model.
     x_test : Dataframe
         Dataframe of the input X to make the predictions.
     y_train : ndarray
-        Array of input y to use for training the model.
+        Array of input y used for training the model.
     y_test : ndarray
         Array of input y to make the predictions.
 
