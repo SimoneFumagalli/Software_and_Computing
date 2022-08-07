@@ -54,11 +54,11 @@ def val_classification(model, validation_sets, clf_times: int):
         __del__(classifier)
     return classifiers
 
-def val_metrics(val_classifiers, validation_sets, t_l = False):
+def val_metrics(val_classifiers, validation_sets, ten_label_type = False):
     x_train, x_test, y_train, y_test = validation_sets
     validation_metrics = []
     for i in range (len(val_classifiers)):
-        validation_metrics.append(Classification.Metrics(val_classifiers[i], y_test[i]))
+        validation_metrics.append(Classification.Metrics(val_classifiers[i], y_test[i], ten_label_type))
     return validation_metrics
 
 

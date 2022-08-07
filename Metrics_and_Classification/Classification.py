@@ -18,30 +18,6 @@ from sklearn.metrics import classification_report
 import pylab as plt
 from collections import Counter
 
-def check_label_type(resulting_labels, ten_label_type:bool = False):
-    '''
-    Function to check what kind of label the metrics is considering:
-    just the one best label or the result from the ten best labels.
-
-    Parameters
-    ----------
-    resulting_labels : array
-        Array containing the one and ten labels arrays.
-    ten_label_type : bool, optional
-        Set True if want to consider the ten labels. The default is False.
-
-    Returns
-    -------
-    y_to_test : array
-        Labels results to be compared to the input labels.
-
-    '''
-    one_label, top_ten_labels = resulting_labels
-    if ten_label_type == False:
-        y_to_test = one_label
-    else:
-        y_to_test = [top_ten_labels[x][0][0] for x in range (len(resulting_labels[1]))]
-    return y_to_test
 
 def checking_batch_size(model, y_train):
     '''
@@ -163,36 +139,8 @@ def top_ten(classifier):
     
     return top_10
 
-def resulting_labels(classifier):
-    '''
-    Function to join the results of the labels of the best neuron with the result
-    from the top_ten function.
 
-    Parameters
-    ----------
-    classifier : array
-        Array containing the fitted model and the predictions.
-
-    Returns
-    -------
-    labels : array
-        Array of labels coming extrapolated using the information of the neuron
-        with the best result.
-    top_10_array : array
-        Array containing the labels of the top ten neurons for each prediction.
-
-    '''
-    fitted_model, prediction = classifier
-    labels = [fitted_model.weights[np.argmax(x)][28*28:].argmax() 
-             for x in prediction]
-    
-
-    # Use of top_ten function
-    top_10_array = top_ten(classifier)
-    
-    return labels, top_10_array
-
-def plot_best_result(x_test, y_test, classifier, resulting_labels, x_predict:int):
+def plot_best_result(x_test, y_test, classifier, x_predict:int):
     '''
     Function to plot the result of the classification.
 
@@ -219,8 +167,9 @@ def plot_best_result(x_test, y_test, classifier, resulting_labels, x_predict:int
     '''
     fitted_model, prediction = classifier
     nc = np.amax(np.abs(fitted_model.weights))
-    label = resulting_labels[0][x_predict]
-    top_ten_label = resulting_labels[1][x_predict]
+    label = [fitted_model.weights[np.argmax(x)][28*28:].argmax() 
+              for x in prediction][x_predict]
+    top_ten_label = top_ten(classifier)[x_predict]
     best_result = fitted_model.weights[np.argmax(prediction[x_predict])][:28*28].reshape(28, 28)
     
     fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(12, 12))
@@ -257,8 +206,13 @@ def Metrics(classifier, y_test, ten_label_type:bool = False):
         Dict containing the values obtained from the classification_report function.
 
     '''
-    result_labels = resulting_labels(classifier)
-    y_labels = check_label_type(result_labels, ten_label_type)
+    fitted_model, prediction = classifier
+    if ten_label_type == True:
+        ten_labels = top_ten(classifier)
+        y_labels = [ten_labels[x][0][0] for x in range(len(ten_labels))]
+    else:
+        y_labels = [fitted_model.weights[np.argmax(x)][28*28:].argmax() 
+                  for x in prediction]
     y_test = y_test.argmax(axis=1)
     
     performance = classification_report(y_test, y_labels, 
