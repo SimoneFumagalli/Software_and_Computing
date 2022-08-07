@@ -258,7 +258,7 @@ def Metrics(classifier, y_test, ten_label_type:bool = False):
 
     '''
     result_labels = resulting_labels(classifier)
-    y_labels = check_label_type(result_labels)
+    y_labels = check_label_type(result_labels, ten_label_type)
     y_test = y_test.argmax(axis=1)
     
     performance = classification_report(y_test, y_labels, 
