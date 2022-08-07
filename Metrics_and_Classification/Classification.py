@@ -19,6 +19,23 @@ import pylab as plt
 from collections import Counter
 
 def check_label_type(resulting_labels, ten_label_type:bool = False):
+    '''
+    Function to check what kind of label the metrics is considering:
+    just the one best label or the result from the ten best labels.
+
+    Parameters
+    ----------
+    resulting_labels : array
+        Array containing the one and ten labels arrays.
+    ten_label_type : bool, optional
+        Set True if want to consider the ten labels. The default is False.
+
+    Returns
+    -------
+    y_to_test : array
+        Labels results to be compared to the input labels.
+
+    '''
     one_label, top_ten_labels = resulting_labels
     if ten_label_type == False:
         y_to_test = one_label
@@ -27,6 +44,22 @@ def check_label_type(resulting_labels, ten_label_type:bool = False):
     return y_to_test
 
 def checking_batch_size(model, y_train):
+    '''
+    Function to control the batch_size parameter of the BCM model.
+
+    Parameters
+    ----------
+    model : BCM model
+        Model to use for the classification.
+    y_train : array
+        Ndarray containing the list of labels used for training the model.
+
+    Returns
+    -------
+    int
+        The value of the batch_size parameter.
+
+    '''
     if model.batch_size > len(y_train):
         print('The dimension of the batch',model.batch_size,'is much higher '
               'than that of the samples',len(y_train),'.\
@@ -37,6 +70,24 @@ def checking_batch_size(model, y_train):
     return model.batch_size
 
 def Variable_Reshape(X,y):
+    '''
+    Function to reshape the input variables X and y
+
+    Parameters
+    ----------
+    X : Dataframe
+        Dataframe of the pixels composing the images.
+    y : Series
+        Series containing the value of the labels associated to the images.
+
+    Returns
+    -------
+    X_norm : Dataframe
+        Dataframe of the X input reshaped.
+    y_transform : ndarray
+        Ndarray containing the reshaped y using the OneHot encoding.
+
+    '''
     X_norm=X*(1./255) # Normalization of the X inputs in range [0,1]
     
     # Transformation of the y vector
@@ -46,7 +97,31 @@ def Variable_Reshape(X,y):
     return X_norm, y_transform
 
 def clf(model, x_train, x_test, y_train, y_test):
-    
+    '''
+    CLassification function in which are implemented the fit and predict function
+    of the plasticity package.
+
+    Parameters
+    ----------
+    model : BCM model
+        Model to use for the classification.
+    x_train : Dataframe
+        Dataframe of the input X to use for training the model.
+    x_test : Dataframe
+        Dataframe of the input X to make the predictions.
+    y_train : ndarray
+        Array of input y to use for training the model.
+    y_test : ndarray
+        Array of input y to make the predictions.
+
+    Returns
+    -------
+    fitted_model : BCM model
+        Trained model.
+    prediction : Array
+        Array containing the predictions of the model.
+
+    '''
     #Checking the batch size
     model.batch_size = checking_batch_size(model,y_train)
     # Use of fitting function
@@ -57,6 +132,21 @@ def clf(model, x_train, x_test, y_train, y_test):
     return fitted_model, prediction
 
 def top_ten(classifier):
+    '''
+    Function to select the ten best neurons and their labels for each image to
+    predict.
+
+    Parameters
+    ----------
+    classifier : array
+        Array containing the fitted model and the predictions.
+
+    Returns
+    -------
+    top_10 : array
+        Array containing the labels of the top ten neurons for each prediction.
+
+    '''
     top_10 = []
     fitted_model, prediction = classifier
     labels = fitted_model.weights[:,28*28:].argmax(axis=1) # Labels of the 100 neurons
@@ -74,6 +164,24 @@ def top_ten(classifier):
     return top_10
 
 def resulting_labels(classifier):
+    '''
+    Function to join the results of the labels of the best neuron with the result
+    from the top_ten function.
+
+    Parameters
+    ----------
+    classifier : array
+        Array containing the fitted model and the predictions.
+
+    Returns
+    -------
+    labels : array
+        Array of labels coming extrapolated using the information of the neuron
+        with the best result.
+    top_10_array : array
+        Array containing the labels of the top ten neurons for each prediction.
+
+    '''
     fitted_model, prediction = classifier
     labels = [fitted_model.weights[np.argmax(x)][28*28:].argmax() 
              for x in prediction]
@@ -84,7 +192,31 @@ def resulting_labels(classifier):
     
     return labels, top_10_array
 
-def plot_best_result(x_test, y_test, classifier, resulting_labels, x_predict):
+def plot_best_result(x_test, y_test, classifier, resulting_labels, x_predict:int):
+    '''
+    Function to plot the result of the classification.
+
+    Parameters
+    ----------
+    x_test : Dataframe
+        Dataframe of the input X to make the predictions.
+    y_test : ndarray
+        Array of input y to make the predictions.
+    classifier : array
+        Array containing the fitted model and the predictions.
+    resulting_labels : array
+        Array containing two arrays: one of the labels obtained using the info
+        from just the best neuron and the other is composed by the labels obtained
+        using the information from the top ten neurons.
+    x_predict : int
+        Int corresponding to the image to which the function will show the result
+        of the classification.
+
+    Returns
+    -------
+    None.
+
+    '''
     fitted_model, prediction = classifier
     nc = np.amax(np.abs(fitted_model.weights))
     label = resulting_labels[0][x_predict]
@@ -104,6 +236,27 @@ def plot_best_result(x_test, y_test, classifier, resulting_labels, x_predict):
     return None
 
 def Metrics(classifier, y_test, ten_label_type:bool = False):
+    '''
+    Function to show the metrics of the classification using the 
+    classification_report function.
+
+    Parameters
+    ----------
+    classifier : array
+        Array containing the fitted model and the predictions.
+    y_test : ndarray
+        Array of input y to make the predictions.
+    ten_label_type : bool, optional
+        Set True if want to consider the ten labels. The default is False.
+
+    Returns
+    -------
+    accuracy_values : float
+        Value of the accuracy result.
+    performance : dict
+        Dict containing the values obtained from the classification_report function.
+
+    '''
     result_labels = resulting_labels(classifier)
     y_labels = check_label_type(result_labels)
     y_test = y_test.argmax(axis=1)
