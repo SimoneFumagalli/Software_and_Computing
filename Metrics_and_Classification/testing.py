@@ -35,6 +35,18 @@ X_norm, y_transform = Classification.Variable_Reshape(X, y)
 x_train, x_test, y_train, y_test = \
 train_test_split(X_norm, y_transform, test_size=1./8)
 
+def test_checking_batch_size():
+    assert isinstance(model.batch_size, int)
+    
+    model.batch_size = 70000
+    check_batch = Classification.checking_batch_size(model, y_train)
+    assert model.batch_size == len(y_train)
+    
+    model.batch_size = 60000
+    check_batch = Classification.checking_batch_size(model, y_train)
+    assert check_batch == model.batch_size
+
+
 def test_Reshape():
     '''
     Function to test the Variable_Reshape function
@@ -50,14 +62,23 @@ def test_Reshape():
     assert isinstance(X_norm, type(X)) #checking the type of x_norm
     assert isinstance(y_transform, np.ndarray) #checking the type of y_transformed
     
-def test_checking_batch_size():
-    assert isinstance(model.batch_size, int)
+def test_clf():
+    classifier = Classification.clf(model, x_train, x_test, y_train, y_test, False)
+    fitted_model, prediction = classifier
     
-    model.batch_size = 70000
-    check_batch = Classification.checking_batch_size(model, y_train)
-    assert model.batch_size == len(y_train)
+    assert fitted_model == model
+    assert len(prediction) == len(y_test)
+    for i in range (len(y_test)):
+        assert len(prediction[i]) == model.outputs
     
-    model.batch_size = 60000
-    check_batch = Classification.checking_batch_size(model, y_train)
-    assert check_batch == model.batch_size
-
+def test_top_ten():
+    classifier = Classification.clf(model, x_train, x_test, y_train, y_test)
+    top_ten_labels = Classification.top_ten(classifier)
+    
+    #Checking the general length of the top_ten_labels
+    assert len(top_ten_labels) == len(y_test)
+    
+    #Checking the length of each prevision using ten neurons
+    for i in range(len(top_ten_labels)):
+        assert (np.sum(top_ten_labels[i],0)[1]) == 10
+        

@@ -19,7 +19,8 @@ import pylab as plt
 from collections import Counter
 from plasticity.utils import view_weights
 
-
+def __del__(self):
+    print(" ")
 
 def checking_batch_size(model, y_train):
     '''
@@ -102,7 +103,7 @@ def clf(model, x_train, x_test, y_train, y_test, plot_view_weights = False):
         Array containing the predictions of the model.
     None.
     '''
-    if view_weights == False:
+    if plot_view_weights == False:
         #Checking the batch size
         model.batch_size = checking_batch_size(model,y_train)
         # Use of fitting function
@@ -113,7 +114,7 @@ def clf(model, x_train, x_test, y_train, y_test, plot_view_weights = False):
     
     else:
         fitted_model = model.fit(x_train)
-        view_weights(fitted_model[0].weights, dims=(28,28))
+        view_weights(fitted_model.weights, dims=(28,28))
         return None
     
 def top_ten(classifier):
