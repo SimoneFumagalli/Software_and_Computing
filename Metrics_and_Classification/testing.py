@@ -103,10 +103,12 @@ def test_Metrics():
 
 def test_checking_number_training():
     clf_times =[4, 6, 8]
-    
-    n_splits = getattr(Validation.val_sets(x_train, y_train, 6), 'n_splits')
+    n_splits = 6
+    x_train_val, x_test_val, y_train_val, y_test_val = Validation.val_sets(x_train, y_train, n_splits)
+    n_split = getattr(Validation.val_sets, 'n_splits')
+    assert n_split == n_splits
     for i in range(len(clf_times)):
-        if clf_times[i] > n_splits:
+        if clf_times[i] > n_split:
             assert Exception("The number of times to operate the classification"
                             " must be lower or equal to "
                             "the number of splitting")
