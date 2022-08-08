@@ -6,7 +6,13 @@ Created on Sat Aug  6 15:23:51 2022
 """
 
 from sklearn.model_selection import StratifiedKFold
-from Metrics_and_Classification import Classification
+import os
+import sys
+path = os.getcwd()
+filepath = os.path.dirname
+sys.path.append(path)
+
+import Classification
 
 def __del__(self):
     print(" ")
