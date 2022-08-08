@@ -7,6 +7,7 @@ Created on Mon Jun  6 11:26:25 2022
 
 from sklearn.datasets import fetch_openml
 import numpy as np
+import pandas as pd
 from plasticity.model import BCM
 from plasticity.model.optimizer import Adam
 from plasticity.model.weights import GlorotNormal
@@ -36,8 +37,27 @@ train_test_split(X_norm, y_transform, test_size=1./8)
 
 def test_Reshape():
     '''
-    Function to test the Variable_Reshape function 
+    Function to test the Variable_Reshape function
+    
+    Given:
+        X_norm: Dataframe of X input reshaped
+        X: Dataframe of X input
+        y_transformed: list of labels reshaped
+    Expected:
+        X_norm has the same type of the input X
+        y_transformed has the form of array
     '''
-    assert type(X_norm) == type(X) #checking the type of x_norm
+    assert isinstance(X_norm, type(X)) #checking the type of x_norm
     assert isinstance(y_transform, np.ndarray) #checking the type of y_transformed
     
+def test_checking_batch_size():
+    assert isinstance(model.batch_size, int)
+    
+    model.batch_size = 70000
+    check_batch = Classification.checking_batch_size(model, y_train)
+    assert model.batch_size == len(y_train)
+    
+    model.batch_size = 60000
+    check_batch = Classification.checking_batch_size(model, y_train)
+    assert check_batch == model.batch_size
+
