@@ -17,6 +17,8 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics import classification_report
 import pylab as plt
 from collections import Counter
+from plasticity.utils import view_weights
+
 
 
 def checking_batch_size(model, y_train):
@@ -72,9 +74,9 @@ def Variable_Reshape(X,y):
     y_transform = OneHotEncoder(sparse=False).fit_transform(y_reshape)
     return X_norm, y_transform
 
-def clf(model, x_train, x_test, y_train, y_test):
+def clf(model, x_train, x_test, y_train, y_test, view_weights = False):
     '''
-    CLassification function in which are implemented the fit and predict function
+    Classification function in which are implemented the fit and predict function
     of the plasticity package.
 
     Parameters
@@ -89,24 +91,31 @@ def clf(model, x_train, x_test, y_train, y_test):
         Array of input y used for training the model.
     y_test : ndarray
         Array of input y to make the predictions.
-
+    view_weights: bool, optional
+        Term indicating if the function is used to classify or to show the
+        configuration of the neuron.
     Returns
     -------
     fitted_model : BCM model
         Trained model.
     prediction : Array
         Array containing the predictions of the model.
-
+    None.
     '''
-    #Checking the batch size
-    model.batch_size = checking_batch_size(model,y_train)
-    # Use of fitting function
-    fitted_model = model.fit(x_train,y_train) 
-    # Use of prevision function
-    prediction = model.predict(x_test, y = np.zeros_like(y_test))
+    if view_weights == False:
+        #Checking the batch size
+        model.batch_size = checking_batch_size(model,y_train)
+        # Use of fitting function
+        fitted_model = model.fit(x_train,y_train) 
+        # Use of prevision function
+        prediction = model.predict(x_test, y = np.zeros_like(y_test))
+        return fitted_model, prediction
     
-    return fitted_model, prediction
-
+    else:
+        fitted_model = model.fit(x_train)
+        view_weights(fitted_model[0].weights, dims=(28,28))
+        return None
+    
 def top_ten(classifier):
     '''
     Function to select the ten best neurons and their labels for each image to
