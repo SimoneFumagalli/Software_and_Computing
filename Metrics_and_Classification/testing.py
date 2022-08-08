@@ -74,6 +74,13 @@ def test_clf():
 def test_top_ten():
     classifier = Classification.clf(model, x_train, x_test, y_train, y_test)
     top_ten_labels = Classification.top_ten(classifier)
+    fitted_model, prediction = classifier
+    
+    labels = [fitted_model.weights[np.argmax(x)][28*28:].argmax() 
+              for x in prediction]
+    
+    assert len(labels) == len(prediction)
+    assert [isinstance(labels[i], int) for i in labels]
     
     #Checking the general length of the top_ten_labels
     assert len(top_ten_labels) == len(y_test)
@@ -81,4 +88,17 @@ def test_top_ten():
     #Checking the length of each prevision using ten neurons
     for i in range(len(top_ten_labels)):
         assert (np.sum(top_ten_labels[i],0)[1]) == 10
-        
+
+def test_Metrics():
+    classifier = Classification.clf(model, x_train, x_test, y_train, y_test)
+    metric_single_label = Classification.Metrics(classifier, y_test, False)
+    accuracy_single_label, dictionary_single_label = metric_single_label
+    metric_top_ten_label = Classification.Metrics(classifier, y_test, False)
+    accuracy_top_ten_label, dictionary_top_ten_label = metric_top_ten_label
+    
+    assert isinstance(accuracy_single_label, int) == isinstance(accuracy_top_ten_label, int)
+    assert isinstance(dictionary_single_label, str) == isinstance(dictionary_top_ten_label, str)
+    
+    
+    
+    
