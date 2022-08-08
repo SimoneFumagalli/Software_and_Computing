@@ -7,11 +7,11 @@ Created on Mon Jun  6 11:26:25 2022
 
 from sklearn.datasets import fetch_openml
 import numpy as np
-import pandas as pd
 from plasticity.model import BCM
 from plasticity.model.optimizer import Adam
 from plasticity.model.weights import GlorotNormal
 from sklearn.model_selection import train_test_split
+import itertools
 import os
 import sys
 
@@ -96,9 +96,38 @@ def test_Metrics():
     metric_top_ten_label = Classification.Metrics(classifier, y_test, False)
     accuracy_top_ten_label, dictionary_top_ten_label = metric_top_ten_label
     
-    assert isinstance(accuracy_single_label, int) == isinstance(accuracy_top_ten_label, int)
-    assert isinstance(dictionary_single_label, str) == isinstance(dictionary_top_ten_label, str)
+    assert isinstance(accuracy_single_label, int) == \
+        isinstance(accuracy_top_ten_label, int)
+    assert isinstance(dictionary_single_label, str) == \
+        isinstance(dictionary_top_ten_label, str)
+
+def test_checking_number_training():
+    clf_times =[4, 6, 8]
     
+    n_splits = getattr(Validation.val_sets(x_train, y_train, 6), 'n_splits')
+    for i in range(len(clf_times)):
+        if clf_times[i] > n_splits:
+            assert Exception("The number of times to operate the classification"
+                            " must be lower or equal to "
+                            "the number of splitting")
+            return None
+        else:
+            return clf_times      
+
+def test_val_sets():
+    n_splits = 4
+    x_train_val, x_test_val, y_train_val, y_test_val = Validation.val_sets(x_train, y_train, n_splits)
+    assert len(x_train_val) == len(x_test_val) == len(y_train_val) \
+                                                      == len(y_test_val) == 4
     
-    
-    
+    for i in range(n_splits):
+        assert len(x_train_val[i]) == len(y_train_val[i])    
+        assert  len(x_test_val[i])== len(y_test_val[i])
+
+def test_val_classification():
+    n_splits = 4
+    clf_times = 3
+    validation_sets = Validation.val_sets(x_train, y_train, n_splits)
+    classifiers = Validation.val_classification(model, validation_sets, clf_times)
+        
+    assert len(classifiers) == clf_times
