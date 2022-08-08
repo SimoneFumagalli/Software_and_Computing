@@ -74,7 +74,7 @@ def Variable_Reshape(X,y):
     y_transform = OneHotEncoder(sparse=False).fit_transform(y_reshape)
     return X_norm, y_transform
 
-def clf(model, x_train, x_test, y_train, y_test, view_weights = False):
+def clf(model, x_train, x_test, y_train, y_test, plot_view_weights = False):
     '''
     Classification function in which are implemented the fit and predict function
     of the plasticity package.
