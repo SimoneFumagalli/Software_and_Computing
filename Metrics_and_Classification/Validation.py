@@ -125,7 +125,6 @@ def val_classification(model, validation_sets, clf_times: int):
         classifier = Classification.clf(model, x_train[i], x_test[i],\
                                         y_train[i], y_test[i])
         classifiers.append(classifier)
-        __del__(classifier)
     return classifiers
 
 def val_metrics(val_classifiers, validation_sets, ten_label_type = False):

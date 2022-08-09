@@ -65,7 +65,7 @@ def test_clf():
     classifier = Classification.clf(model, x_train, x_test, y_train, y_test, False)
     fitted_model, prediction = classifier
     
-    assert fitted_model == model
+    assert isinstance(fitted_model, np.ndarray)
     assert len(prediction) == len(y_test)
     for i in range (len(y_test)):
         assert len(prediction[i]) == model.outputs
@@ -75,7 +75,7 @@ def test_top_ten():
     top_ten_labels = Classification.top_ten(classifier)
     fitted_model, prediction = classifier
     
-    labels = [fitted_model.weights[np.argmax(x)][28*28:].argmax() 
+    labels = [fitted_model[np.argmax(x)][28*28:].argmax() 
               for x in prediction]
     
     assert len(labels) == len(prediction)

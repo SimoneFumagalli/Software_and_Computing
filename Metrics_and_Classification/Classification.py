@@ -97,8 +97,8 @@ def clf(model, x_train, x_test, y_train, y_test, plot_view_weights = False):
         configuration of the neuron.
     Returns
     -------
-    fitted_model : BCM model
-        Trained model.
+    fitted_model.weights : Array
+        Weights of trained model.
     prediction : Array
         Array containing the predictions of the model.
     None.
@@ -110,7 +110,7 @@ def clf(model, x_train, x_test, y_train, y_test, plot_view_weights = False):
         fitted_model = model.fit(x_train,y_train) 
         # Use of prevision function
         prediction = model.predict(x_test, y = np.zeros_like(y_test))
-        return fitted_model, prediction
+        return fitted_model.weights, prediction
     
     else:
         fitted_model = model.fit(x_train)
@@ -135,7 +135,7 @@ def top_ten(classifier):
     '''
     top_10 = []
     fitted_model, prediction = classifier
-    labels = fitted_model.weights[:,28*28:].argmax(axis=1) # Labels of the 100 neurons
+    labels = fitted_model[:,28*28:].argmax(axis=1) # Labels of the 100 neurons
     
     for x in prediction:
          
@@ -176,13 +176,13 @@ def plot_best_result(x_test, y_test, classifier, x_predict:int):
 
     '''
     fitted_model, prediction = classifier
-    nc = np.amax(np.abs(fitted_model.weights))
+    nc = np.amax(np.abs(fitted_model))
     #selection of the labels with the best neuron
-    label = [fitted_model.weights[np.argmax(x)][28*28:].argmax() 
+    label = [fitted_model[np.argmax(x)][28*28:].argmax() 
               for x in prediction][x_predict]
     #selection of labels using the top ten result
     top_ten_label = top_ten(classifier)[x_predict]
-    best_result = fitted_model.weights[np.argmax(prediction[x_predict])][:28*28].reshape(28, 28)
+    best_result = fitted_model[np.argmax(prediction[x_predict])][:28*28].reshape(28, 28)
     
     fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(12, 12))
     ax1.set_title('Image from the Fashion-MNIST dataset: {:d}'.format(y_test[x_predict].argmax()))
@@ -224,7 +224,7 @@ def Metrics(classifier, y_test, ten_label_type:bool = False):
         ten_labels = top_ten(classifier)
         y_labels = [ten_labels[x][0][0] for x in range(len(ten_labels))]
     else:
-        y_labels = [fitted_model.weights[np.argmax(x)][28*28:].argmax() 
+        y_labels = [fitted_model[np.argmax(x)][28*28:].argmax() 
                   for x in prediction]
     y_test = y_test.argmax(axis=1)
     

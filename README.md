@@ -51,7 +51,7 @@ Now, the model can be constructed.
 
 ### Classification
 * In order to make the classification, the ``Classification.clf`` must be used. The result will depend on the ```plot_view_weights```:
-if it is set ```True```, the result will be the plot of the configured neurons; if ```False``` it will be composed by the fitted model and the predictions made.
+if it is set ```True```, the result will be the plot of the configured neurons; if ```False``` it will be composed by the weights of the fitted model and the predictions made.
 Example of the `plot_view_weights = True`:
 
 * In the end, after the classification, it's possible to observe which neuron has been chosen to be the best one by invoking the ```plot_best_result``` and specifying which image by using the ```x_predict``` function.
