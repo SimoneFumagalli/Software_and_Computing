@@ -19,8 +19,6 @@ import pylab as plt
 from collections import Counter
 from plasticity.utils import view_weights
 
-def __del__(self):
-    print(" ")
 
 def checking_batch_size(model, y_train):
     '''

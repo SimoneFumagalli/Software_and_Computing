@@ -13,9 +13,6 @@ filepath = os.path.dirname(os.path.abspath('Classification.py'))
 sys.path.append(filepath)
 
 import Classification
-
-def __del__(self):
-    print(" ")
     
 def check_number_training(clf_times: int):
     '''
