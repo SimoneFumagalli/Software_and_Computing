@@ -11,12 +11,11 @@ from plasticity.model import BCM
 from plasticity.model.optimizer import Adam
 from plasticity.model.weights import GlorotNormal
 from sklearn.model_selection import train_test_split
-import itertools
 import os
 import sys
 
 path = os.getcwd()
-filepath = os.path.dirname
+filepath = os.path.dirname(os.path.abspath('Classification.py'))
 sys.path.append(path)
 
 import Classification
@@ -133,3 +132,15 @@ def test_val_classification():
     classifiers = Validation.val_classification(model, validation_sets, clf_times)
         
     assert len(classifiers) == clf_times
+    
+def test_val_metrics():
+    n_splits = 8
+    clf_times = 4
+    validation_sets= Validation.val_sets(x_train, y_train, n_splits)
+    val_classifiers = Validation.val_classification(model, validation_sets, clf_times)
+    validation_metric = Validation.val_metrics(val_classifiers, validation_sets)
+    assert len(validation_metric) == clf_times
+    for i in range(clf_times):
+        assert len(validation_metric[i]) == 2
+        assert isinstance(validation_metric[i][0], float)
+        assert isinstance(validation_metric[i][1], dict)

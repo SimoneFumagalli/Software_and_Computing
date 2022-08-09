@@ -9,8 +9,8 @@ from sklearn.model_selection import StratifiedKFold
 import os
 import sys
 path = os.getcwd()
-filepath = os.path.dirname
-sys.path.append(path)
+filepath = os.path.dirname(os.path.abspath('Classification.py'))
+sys.path.append(filepath)
 
 import Classification
 
