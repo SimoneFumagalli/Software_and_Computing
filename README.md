@@ -11,7 +11,7 @@ This repository contains four scripts:
 * The Classification script contains functions to operate automatically a classification of a model starting from the BCM package. In addition, a function to study the metric has been implemented;
 * The Validation script contains the functions to operate a validation of the model constructed;
 * The testing file contains the tests made on the Classification and Validation by using the pytest function.
-* The example scripts contains how to use the functions. In this folder, some results are shown.
+* The example script contains how to use the functions. In this folder, some results are shown.
 
 ## How to Install
 
