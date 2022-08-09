@@ -177,8 +177,10 @@ def plot_best_result(x_test, y_test, classifier, x_predict:int):
     '''
     fitted_model, prediction = classifier
     nc = np.amax(np.abs(fitted_model.weights))
+    #selection of the labels with the best neuron
     label = [fitted_model.weights[np.argmax(x)][28*28:].argmax() 
               for x in prediction][x_predict]
+    #selection of labels using the top ten result
     top_ten_label = top_ten(classifier)[x_predict]
     best_result = fitted_model.weights[np.argmax(prediction[x_predict])][:28*28].reshape(28, 28)
     
@@ -217,6 +219,7 @@ def Metrics(classifier, y_test, ten_label_type:bool = False):
 
     '''
     fitted_model, prediction = classifier
+    #if statement to decide on which set of labels operate the metrics
     if ten_label_type == True:
         ten_labels = top_ten(classifier)
         y_labels = [ten_labels[x][0][0] for x in range(len(ten_labels))]

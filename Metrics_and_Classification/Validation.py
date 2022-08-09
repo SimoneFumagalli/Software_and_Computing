@@ -82,7 +82,7 @@ def val_sets(x_train,y_train, n_splits:int = 2):
     skf = StratifiedKFold(n_splits)
 
     x_train_val, x_test_val, y_train_val, y_test_val = [],[],[],[]
-    
+    # Use of the skf.split to generate different models
     for train_index, test_index in skf.split(x_train,y_train.argmax(axis=1)):
         x_train_, x_test_ = x_train.values[train_index], \
                                               x_train.values[test_index]
@@ -117,9 +117,10 @@ def val_classification(model, validation_sets, clf_times: int):
     '''
     x_train, x_test, y_train, y_test = validation_sets
     classifiers = []
-    
+    # Control the number of classifications to be lower than number of splits
     clf_times = check_number_training(clf_times)
     
+    # CLassification cycle
     for i in range(clf_times):
         classifier = Classification.clf(model, x_train[i], x_test[i],\
                                         y_train[i], y_test[i])
@@ -149,6 +150,7 @@ def val_metrics(val_classifiers, validation_sets, ten_label_type = False):
     '''
     x_train, x_test, y_train, y_test = validation_sets
     validation_metrics = []
+    # Metrics on different set
     for i in range (len(val_classifiers)):
         validation_metrics.append(Classification.Metrics(val_classifiers[i], y_test[i], ten_label_type))
     return validation_metrics
