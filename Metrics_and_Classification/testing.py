@@ -143,4 +143,3 @@ def test_val_metrics():
     for i in range(clf_times):
         assert len(validation_metric[i]) == 2
         assert isinstance(validation_metric[i][0], float)
-        assert type(validation_metric[i][1], dict)
