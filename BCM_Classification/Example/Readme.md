@@ -65,14 +65,15 @@ for i in range (4):
 ```
 In this case, four images will be shown.
 
+<div align="center">
 <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Figure_1.png"  height = "500" width = "500">
 <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Figure_2.png"  height = "500" width = "500">
-
+</div>
 <div align="center">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/Example/MNIST/Classification/Figure_3.png" 
- height = "800" width = "800">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/Example/MNIST/Classification/Figure_4.png" 
- height = "800" width = "800">
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Figure_3.png" 
+ height = "500" width = "500">
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Figure_4.png" 
+ height = "500" width = "500">
 </div>
 
 The study of the metrics related to the classification and visualize the response:
