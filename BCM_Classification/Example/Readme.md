@@ -54,7 +54,7 @@ classifier = Classification.clf(model, x_train, x_test, y_train, y_test, True)
 ```
 <div align = "center">
 <img src=https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Plot_view_weights.png height = "600" width = "600">
-<\div>
+</div>
 
 In order to observe the comparison between the input images and the classification best results, the `plot_view_weights` must be `False` and the `plot_best_result` function must be invoked.
 ```python
@@ -68,10 +68,10 @@ In this case, four images will be shown.
 <div align="center">
  <tbody>
  <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Figure_1.png" 
- height = "400" width = "400"></td>
+ height = "450" width = "450"></td>
  <td valign="top">
  <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Figure_2.png" 
- height = "400" width = "400"></td>
+ height = "450" width = "450"></td>
  </tbody>
 </div>
 
