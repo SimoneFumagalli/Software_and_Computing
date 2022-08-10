@@ -83,7 +83,7 @@ single_label_metric = Classification.Metrics(classifier, y_test,False)
 ten_label_metric = Classification.Metrics(classifier,y_test, True)
 ```
 
-Where the results take the form:
+Where the results take the form:\\
 Single Label Metric                                              | Ten Label Metric           
 ```python                                                        |         
                precision     recall      f1-score     support    |                 precision      recall     f1-score     support
