@@ -64,15 +64,14 @@ for i in range (4):
     br =Classification.plot_best_result(x_test, y_test, classifier, i)
 ```
 In this case, four images will be shown.
-
 <div align="center">
- <tbody>
+
  <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Figure_1.png" 
- height = "450" width = "450"></td>
+ height = "500" width = "500"></td>
  <td valign="top">
  <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Figure_2.png" 
- height = "450" width = "450"></td>
- </tbody>
+ height = "500" width = "500"></td>
+
 </div>
 
 <div align="center">
