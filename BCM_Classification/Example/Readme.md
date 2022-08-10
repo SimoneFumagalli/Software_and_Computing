@@ -67,10 +67,10 @@ In this case, four images will be shown.
 <div align="center">
  <tbody>
  <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Figure_1.png" 
- height = "700" width = "700"></td>
+ height = "600" width = "600"></td>
  <td valign="top">
  <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Figure_2.png" 
- height = "700" width = "700"></td>
+ height = "600" width = "600"></td>
  </tbody>
 </div>
 
