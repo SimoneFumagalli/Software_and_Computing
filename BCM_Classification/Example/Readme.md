@@ -53,7 +53,7 @@ Now, in order to obtain the configuration of the fitted neurons the `plot_view_w
 classifier = Classification.clf(model, x_train, x_test, y_train, y_test, True)
 ```
 
-<img src=https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Plot_view_weights.png height = "300" width = "300">
+<img src=https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Plot_view_weights.png height = "600" width = "600">
 
 In order to observe the comparison between the input images and the classification best results, the `plot_view_weights` must be `False` and the `plot_best_result` function must be invoked.
 ```python
@@ -66,12 +66,11 @@ In this case, four images will be shown.
 
 <div align="center">
  <table width="500" border="0">
- <thead><td colspan="2" align="center">Metric with Validation Set</td></thead>
  <tbody>
- <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/Example/MNIST/Classification/Figure_1.png" 
+ <td valign="top"><img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Figure_1.png" 
  height = "500" width = "500"></td>
  <td valign="top">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/Metrics_and_Classification/Example/MNIST/Classification/Figure_2.png" 
+ <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Figure_2.png" 
  height = "500" width = "500"></td>
  </tbody>
  </table>
