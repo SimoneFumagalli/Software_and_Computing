@@ -21,7 +21,7 @@ Then the present repository can be downloaded:
 git clone https://github.com/SimoneFumagalli/Software_and_Computing
 ```
 ## How to Use
-In this section the steps to use the Classification and Validation are shown, with the example scripts observable [here] LINK DEGLI ESEMPI.
+In this section the steps to use the Classification and Validation are shown, with the example scripts observable [here](https://github.com/SimoneFumagalli/Software_and_Computing/tree/main/BCM_Classification/Example).
 
 * The following modules must be imported:
  ```python
