@@ -67,13 +67,16 @@ In this case, four images will be shown.
 
 <div align="center">
 <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Figure_1.png"  height = "300" width = "400">
+
 <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Figure_2.png"  height = "300" width = "400">
 </div>
+
 <div align="center">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Figure_3.png" 
- height = "300" width = "400">
- <img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Figure_4.png" 
- height = "300" width = "400">
+<img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Figure_3.png" 
+height = "300" width = "400">
+
+<img src="https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Figure_4.png" 
+height = "300" width = "400">
 </div>
 
 The study of the metrics related to the classification and visualize the response:
