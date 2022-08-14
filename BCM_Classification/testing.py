@@ -164,6 +164,19 @@ def test_Metrics():
         isinstance(dictionary_top_ten_label, str)
 
 def test_checking_number_training():
+    '''
+    Function to test the checking_number_training function.
+
+    Given:
+        n_splits: int indicating how many times the training set is splitted 
+                  in different validation sets.
+        clf_times: array of int.
+    
+    Expected:
+        if clf_times is higher than the n_splits the exception error should occur.
+        if clf_times is lower or equal to n_splits the returned value should be 
+        the clf_times value.
+    '''
     clf_times =[4, 6, 8]
     n_splits = 6
     x_train_val, x_test_val, y_train_val, y_test_val = Validation.val_sets(x_train, y_train, n_splits)
@@ -179,6 +192,20 @@ def test_checking_number_training():
             return clf_times      
 
 def test_val_sets():
+    '''
+    Function to test the val_sets function.
+    
+    Given:
+        x_train_val: array of validation set of images used for the training
+        x_test_val: array of validation set of images used for the predictions
+        y_train: array of validation set of labels used for the training
+        y_test: array of validation set of labels that must be predicted
+        n_splits: int indicating the times in which the training set is splitted
+    Expected:
+        The length of different sets should be equal to the number of splitting
+        The length of different x_train_val and y_train_val sets should be equal
+        The length of different x_test_val and y_test_val sets should be equal        
+    '''
     n_splits = 4
     x_train_val, x_test_val, y_train_val, y_test_val = Validation.val_sets(x_train, y_train, n_splits)
     assert len(x_train_val) == len(x_test_val) == len(y_train_val) \
@@ -189,6 +216,16 @@ def test_val_sets():
         assert  len(x_test_val[i])== len(y_test_val[i])
 
 def test_val_classification():
+    '''
+    Function to test the val_classification function
+
+    Given:
+        clf_times: int, number of times to operate the clf function
+        classifiers: val_classification function outputs
+    Expected:
+        The number of times the classification is performed should be equal to
+        the clf_times
+    '''
     n_splits = 4
     clf_times = 3
     validation_sets = Validation.val_sets(x_train, y_train, n_splits)
@@ -197,6 +234,22 @@ def test_val_classification():
     assert len(classifiers) == clf_times
     
 def test_val_metrics():
+    '''
+    Function to test the val_metrics function.
+    
+    Given:
+        n_splits: int indicating the times in which the training set is splitted
+        clf_times: int, number of times to operate the clf function
+        validation_sets: output of val_sets function
+        val_classifier: output of val_classification function
+        validation_metric: output of val_metric function
+    Expected:
+        The length of validation_sets variable should be equal to clf_times
+        For each classification, the metrics is performed and it should return the
+        accuracy and classification__report. The length of the validation_metric
+        of each classification so should be equal to two
+        The first element of each metrics should be equal to a float type
+    '''
     n_splits = 8
     clf_times = 4
     validation_sets= Validation.val_sets(x_train, y_train, n_splits)
