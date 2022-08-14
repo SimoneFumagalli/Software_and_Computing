@@ -35,6 +35,18 @@ x_train, x_test, y_train, y_test = \
 train_test_split(X_norm, y_transform, test_size=1./8)
 
 def test_checking_batch_size():
+    '''
+    Function to test the checking_batch_size function.
+
+    Given:
+        model: BCM model
+        y_train: list of labels used for the training
+    Expected:
+        When model.batch_size higher than the length of y_train, modl.batch_size
+        is reduced to be equal to the length of y_train
+        If model.batch_size lower than the length of y_train, it doesn't change.
+
+    '''
     assert isinstance(model.batch_size, int)
     
     model.batch_size = 70000
@@ -62,6 +74,22 @@ def test_Reshape():
     assert isinstance(y_transform, np.ndarray) #checking the type of y_transformed
     
 def test_clf():
+    '''
+    Function to the clf function that implements the BCM functions fit and predict.
+    
+    Given:
+        model: BCM model
+        x_train: Dataframe of the images used to train the model
+        x_test: Dataframe of the images on which the prediction is made
+        y_train: List of labels used to train the model
+        y_test: List of labels that should be predicted from the model
+    Expected:
+        Fitted_model is a ndarray composed by the weights of the model
+        The prediction is performed for each of the y_test labels and so their 
+        dimensions should correspond
+        Each prediction is composed by the result of the predict function for all the
+        neuron and so the length of each prediction must correspond to the model.outputs
+    '''
     classifier = Classification.clf(model, x_train, x_test, y_train, y_test, False)
     fitted_model, prediction = classifier
     
@@ -71,6 +99,23 @@ def test_clf():
         assert len(prediction[i]) == model.outputs
     
 def test_top_ten():
+    '''
+    Function to test the top_ten_labels function.
+
+    Given:
+        top_ten_labels: array of predicted labels using the survey of 
+                        the best ten neurons
+        labels: extraction of the labels considering the neuron with the higher score
+    
+    Expected:
+        The length of the labels should be equal to that of the predictions, or also
+        to the size of the test set
+        The type of the labels should be only int
+        The length of top_ten_labels array should be equal to the size of test set
+        The total number of votes for each label should be equal to ten
+        
+    
+    '''
     classifier = Classification.clf(model, x_train, x_test, y_train, y_test)
     top_ten_labels = Classification.top_ten(classifier)
     fitted_model, prediction = classifier
@@ -89,6 +134,24 @@ def test_top_ten():
         assert (np.sum(top_ten_labels[i],0)[1]) == 10
 
 def test_Metrics():
+    '''
+    Function to test the Metrics function.
+
+    Given:
+        accuracy_single_label: measured accuracy with labels obtained using 
+                               just the best neuron
+        dictionary_single_label: output of the classification_report function 
+                                 using just the best neuron
+        accuracy_top_ten_label: measured accuracy with labels obtained using 
+                                the survey of the top ten neurons
+        dictionary_top_ten_label: output of the classification_report function
+                                  using the survey of the top ten neurons
+    Expected:
+        The accuracy_single_label and accuracy_top_ten_label should have the same
+        type, int
+        The dictionary_single_label and dictionary_top_ten_label should havet the
+        same type, str
+    '''
     classifier = Classification.clf(model, x_train, x_test, y_train, y_test)
     metric_single_label = Classification.Metrics(classifier, y_test, False)
     accuracy_single_label, dictionary_single_label = metric_single_label
