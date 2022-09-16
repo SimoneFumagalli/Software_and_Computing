@@ -73,7 +73,7 @@ def Variable_Reshape(X,y):
     y_transform = OneHotEncoder(sparse=False).fit_transform(y_reshape)
     return X_norm, y_transform
 
-def clf(model, x_train, x_test, y_train, y_test, plot_view_weights = False):
+def clf(model, x_train, x_test, y_train, y_test):
     '''
     Classification function in which are implemented the fit and predict function
     of the plasticity package.
@@ -90,31 +90,23 @@ def clf(model, x_train, x_test, y_train, y_test, plot_view_weights = False):
         Array of input y used for training the model.
     y_test : ndarray
         Array of input y to make the predictions.
-    view_weights: bool, optional
-        Term indicating if the function is used to classify or to show the
-        configuration of the neuron.
+    
     Returns
     -------
     fitted_model.weights : Array
         Weights of trained model.
     prediction : Array
         Array containing the predictions of the model.
-    None.
     '''
-    if plot_view_weights == False:
-        #Checking the batch size
-        model.batch_size = checking_batch_size(model,y_train)
-        # Use of fitting function
-        fitted_model = model.fit(x_train,y_train) 
-        # Use of prevision function
-        prediction = model.predict(x_test, y = np.zeros_like(y_test))
-        return fitted_model.weights, prediction
     
-    else:
-        fitted_model = model.fit(x_train)
-        view_weights(fitted_model.weights, dims=(28,28))
-        return None
-    
+    #Checking the batch size
+    model.batch_size = checking_batch_size(model,y_train)
+    # Use of fitting function
+    fitted_model = model.fit(x_train,y_train) 
+    # Use of prevision function
+    prediction = model.predict(x_test, y = np.zeros_like(y_test))
+    return fitted_model.weights, prediction
+
 def top_ten(classifier):
     '''
     Function to select the ten best neurons and their labels for each image to
@@ -147,6 +139,41 @@ def top_ten(classifier):
     
     return top_10
 
+def plot_params(classifier, x_predict:int):
+    '''
+    Function to determine the parameters necessary for the plot.
+
+    Parameters
+    ----------
+    classifier : array
+        Array containing the fitted model and the predictions.
+    x_predict : int
+        Int corresponding to the image to which the function will show the result
+        of the classification.
+
+    Returns
+    -------
+    nc : float
+        Parameter to set the scale on the plot.
+    label : array
+        List of labels obtained from the prediction.
+    top_ten_label : array
+        Array containing the labels of the top ten neurons for each prediction.
+    best_result : Array
+        Weights of the trained model that has been chosen to be the best result.
+
+    '''
+    fitted_model, prediction = classifier
+    
+    nc = np.amax(np.abs(fitted_model))
+    #selection of the labels with the best neuron
+    label = [fitted_model[np.argmax(x)][28*28:].argmax() 
+              for x in prediction][x_predict]
+    #selection of labels using the top ten result
+    top_ten_label = top_ten(classifier)[x_predict]
+    best_result = fitted_model[np.argmax(prediction[x_predict])][:28*28].reshape(28, 28)
+    
+    return nc, label, top_ten_label, best_result
 
 def plot_best_result(x_test, y_test, classifier, x_predict:int):
     '''
@@ -160,10 +187,6 @@ def plot_best_result(x_test, y_test, classifier, x_predict:int):
         Array of input y to make the predictions.
     classifier : array
         Array containing the fitted model and the predictions.
-    resulting_labels : array
-        Array containing two arrays: one of the labels obtained using the info
-        from just the best neuron and the other is composed by the labels obtained
-        using the information from the top ten neurons.
     x_predict : int
         Int corresponding to the image to which the function will show the result
         of the classification.
@@ -173,15 +196,11 @@ def plot_best_result(x_test, y_test, classifier, x_predict:int):
     None.
 
     '''
-    fitted_model, prediction = classifier
-    nc = np.amax(np.abs(fitted_model))
-    #selection of the labels with the best neuron
-    label = [fitted_model[np.argmax(x)][28*28:].argmax() 
-              for x in prediction][x_predict]
-    #selection of labels using the top ten result
-    top_ten_label = top_ten(classifier)[x_predict]
-    best_result = fitted_model[np.argmax(prediction[x_predict])][:28*28].reshape(28, 28)
-    
+    param = plot_params(classifier, x_predict)
+    nc = param[0]
+    label = param[1]
+    top_ten_label = param[2]
+    best_result = param[3]
     fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(12, 12))
     ax1.set_title('Image from the Fashion-MNIST dataset: {:d}'.format(y_test[x_predict].argmax()))
     ax1.imshow(x_test.values[x_predict].reshape(28, 28), cmap='gray'); ax1.axis('off')
