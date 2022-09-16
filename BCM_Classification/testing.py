@@ -69,11 +69,12 @@ def test_Reshape():
     
     Given:
         X_1: List of int
-        
-        y_transformed: list of labels reshaped
+        y_transform: list of labels reshaped
     Expected:
-        X_norm has the same type of the input X
-        y_transformed has the form of array
+        By using the function Variable_Reshape, the every number of 
+        variable X_norm should correspond to every number of X_1 divided by 255. 
+        The 1 element of the arrays present in y_transform should be in the position
+        corresponding to the numbers of y_series.
     '''
 
     X_1 = np.arange(0,20, dtype=float)
