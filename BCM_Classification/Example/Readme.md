@@ -2,7 +2,7 @@
 
 In this section an Example on how to use the Classification and Validation scripts is shown. Some results are contained in the relative folders.
 
-At the beginning the are several functions to import:
+At the beginning there are several functions to import:
 
 ```python
  from plasticity.model import BCM
