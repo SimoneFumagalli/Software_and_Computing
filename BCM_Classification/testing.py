@@ -116,40 +116,30 @@ def test_clf(modelling):
     for i in range (len(y_test)):
         assert len(prediction[i]) == modelling.outputs
     
-def test_top_ten():
+def test_top_ten(modelling):
     '''
     Function to test the top_ten_labels function.
 
     Given:
         top_ten_labels: array of predicted labels using the survey of 
-                        the best ten neurons
-        labels: extraction of the labels considering the neuron with the higher score
-    
+                        the best ten neurons    
     Expected:
-        The length of the labels should be equal to that of the predictions, or also
-        to the size of the test set
-        The type of the labels should be only int
         The length of top_ten_labels array should be equal to the size of test set
-        The total number of votes for each label should be equal to ten
+        The total number of votes for each label should be equal to the shape of
+        the elements of the test set.
         
     
     '''
-    classifier = Classification.clf(model, x_train, x_test, y_train, y_test)
+    classifier = Classification.clf(modelling, x_train, x_test, y_train, y_test)
     top_ten_labels = Classification.top_ten(classifier)
-    fitted_model, prediction = classifier
-    
-    labels = [fitted_model[np.argmax(x)][28*28:].argmax() 
-              for x in prediction]
-    
-    assert len(labels) == len(prediction)
-    assert [isinstance(labels[i], int) for i in labels]
+        
     
     #Checking the general length of the top_ten_labels
     assert len(top_ten_labels) == len(y_test)
     
     #Checking the length of each prevision using ten neurons
     for i in range(len(top_ten_labels)):
-        assert (np.sum(top_ten_labels[i],0)[1]) == 10
+        assert (np.sum(top_ten_labels[i],0)[1]) == y_test.shape[1]
 
 def test_Metrics():
     '''
