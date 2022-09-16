@@ -7,12 +7,14 @@ Created on Mon Jun  6 11:26:25 2022
 
 from sklearn.datasets import fetch_openml
 import numpy as np
+import pandas as pd
 from plasticity.model import BCM
 from plasticity.model.optimizer import Adam
 from plasticity.model.weights import GlorotNormal
 from sklearn.model_selection import train_test_split
 import os
 import sys
+import pytest
 
 path = os.getcwd()
 filepath = os.path.dirname(os.path.abspath('Classification.py'))
@@ -23,10 +25,13 @@ import Validation
 
 X, y = fetch_openml(name='mnist_784', version=1, data_id=None, return_X_y=True)
 
-model = BCM(outputs=100, num_epochs=1, optimizer=Adam(lr=3e-2), 
-            interaction_strength=0.,
-            weights_init=GlorotNormal(),
-            activation='Relu', batch_size=60000)
+@pytest.fixture
+def modelling():
+    model = BCM(outputs=100, num_epochs=1, optimizer=Adam(lr=3e-2), 
+                interaction_strength=0.,
+                weights_init=GlorotNormal(),
+                activation='Relu', batch_size=60000)
+    return model
 
 #Reshaping of the dataset
 X_norm, y_transform = Classification.Variable_Reshape(X, y)
@@ -34,7 +39,7 @@ X_norm, y_transform = Classification.Variable_Reshape(X, y)
 x_train, x_test, y_train, y_test = \
 train_test_split(X_norm, y_transform, test_size=1./8)
 
-def test_checking_batch_size():
+def test_checking_batch_size(modelling):
     '''
     Function to test the checking_batch_size function.
 
@@ -47,15 +52,15 @@ def test_checking_batch_size():
         If model.batch_size lower than the length of y_train, it doesn't change.
 
     '''
-    assert isinstance(model.batch_size, int)
+    assert isinstance(modelling.batch_size, int)
     
-    model.batch_size = 70000
-    check_batch = Classification.checking_batch_size(model, y_train)
-    assert model.batch_size == len(y_train)
+    modelling.batch_size = 70000
+    check_batch = Classification.checking_batch_size(modelling, y_train)
+    assert modelling.batch_size == len(y_train)
     
-    model.batch_size = 60000
-    check_batch = Classification.checking_batch_size(model, y_train)
-    assert check_batch == model.batch_size
+    modelling.batch_size = 60000
+    check_batch = Classification.checking_batch_size(modelling, y_train)
+    assert check_batch == modelling.batch_size
 
 
 def test_Reshape():
@@ -70,9 +75,16 @@ def test_Reshape():
         X_norm has the same type of the input X
         y_transformed has the form of array
     '''
-    assert isinstance(X_norm, type(X)) #checking the type of x_norm
-    assert isinstance(y_transform, np.ndarray) #checking the type of y_transformed
+
+    X_1 = np.arange(0,20, dtype=float)
+    y_1 = np.arange(0,10,dtype=int)
+    y_series = pd.Series(y_1)
+    X_norm, y_transform = Classification.Variable_Reshape(X_1, y_series)
+    assert all(X_norm == X_1*(1./255))
     
+    for i in range(len(y_1)):
+        assert np.where(y_transform[i] == 1.) == y_1[i]    
+        
 def test_clf():
     '''
     Function to the clf function that implements the BCM functions fit and predict.
