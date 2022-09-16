@@ -68,8 +68,8 @@ def test_Reshape():
     Function to test the Variable_Reshape function
     
     Given:
-        X_norm: Dataframe of X input reshaped
-        X: Dataframe of X input
+        X_1: List of int
+        
         y_transformed: list of labels reshaped
     Expected:
         X_norm has the same type of the input X
@@ -77,13 +77,12 @@ def test_Reshape():
     '''
 
     X_1 = np.arange(0,20, dtype=float)
-    y_1 = np.arange(0,10,dtype=int)
-    y_series = pd.Series(y_1)
+    y_series = pd.Series(np.arange(0,10,dtype=int))
     X_norm, y_transform = Classification.Variable_Reshape(X_1, y_series)
     assert all(X_norm == X_1*(1./255))
     
-    for i in range(len(y_1)):
-        assert np.where(y_transform[i] == 1.) == y_1[i]    
+    for i in range(10):
+        assert np.where(y_transform[i] == 1.) == y_series[i]    
         
 def test_clf():
     '''
