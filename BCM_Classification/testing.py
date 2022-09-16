@@ -85,9 +85,9 @@ def test_Reshape():
     for i in range(10):
         assert np.where(y_transform[i] == 1.) == y_series[i]    
         
-def test_clf():
+def test_clf(modelling):
     '''
-    Function to the clf function that implements the BCM functions fit and predict.
+    Function to test the clf function that implements the BCM functions fit and predict.
     
     Given:
         model: BCM model
@@ -96,19 +96,25 @@ def test_clf():
         y_train: List of labels used to train the model
         y_test: List of labels that should be predicted from the model
     Expected:
-        Fitted_model is a ndarray composed by the weights of the model
+        Fitted_model should be composed by the same number of elements of the output
+        of the model.
+        Elements of Fitted_model should have the dimension given by the dimension of
+        the elements of x_train plus that of the elements of y_train.
         The prediction is performed for each of the y_test labels and so their 
         dimensions should correspond
         Each prediction is composed by the result of the predict function for all the
         neuron and so the length of each prediction must correspond to the model.outputs
     '''
-    classifier = Classification.clf(model, x_train, x_test, y_train, y_test, False)
+    classifier = Classification.clf(modelling, x_train, x_test, y_train, y_test)
     fitted_model, prediction = classifier
     
-    assert isinstance(fitted_model, np.ndarray)
+    assert len(fitted_model) == modelling.outputs
+    assert [len(fitted_model[i]) == x_train.shape[1] + y_train.shape[1] \
+            for i in range (modelling.outputs)]
+    
     assert len(prediction) == len(y_test)
     for i in range (len(y_test)):
-        assert len(prediction[i]) == model.outputs
+        assert len(prediction[i]) == modelling.outputs
     
 def test_top_ten():
     '''
