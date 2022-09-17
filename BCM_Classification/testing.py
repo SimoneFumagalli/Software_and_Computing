@@ -246,19 +246,31 @@ def test_val_sets():
         y_test: array of validation set of labels that must be predicted
         n_splits: int indicating the times in which the training set is splitted
     Expected:
-        The length of different sets should be equal to the number of splitting
-        The length of different x_train_val and y_train_val sets should be equal
-        The length of different x_test_val and y_test_val sets should be equal        
+        The length of different sets should be equal to the number of splitting.
+        The composition x_train_val and x_test_val sets should be equal to
+        set used for the splitting.
+        The composition y_train_val and y_test_val sets should be equal to
+        set used for the splitting.
     '''
     n_splits = 4
     x_train_val, x_test_val, y_train_val, y_test_val = Validation.val_sets(x_train, y_train, n_splits)
-    assert len(x_train_val) == len(x_test_val) == len(y_train_val) \
-                                                      == len(y_test_val) == 4
     
+    
+    x_train_ = x_train.values.reshape(61250,784)
+    x_t_list = Testing_Utils.listing_and_sorting(x_train_)
+    y_t_list = Testing_Utils.listing_and_sorting(y_train)
+    
+    assert len(x_train_val) == len(x_test_val) == len(y_train_val) \
+                                                      == len(y_test_val) == n_splits
     for i in range(n_splits):
-        assert len(x_train_val[i]) == len(y_train_val[i])    
-        assert  len(x_test_val[i])== len(y_test_val[i])
-
+        x_val = np.concatenate((x_train_val[i],x_test_val[i]))
+        x_val_list = Testing_Utils.listing_and_sorting(x_val)
+        y_val = np.concatenate((y_train_val[i],y_test_val[i]))
+        y_val_list = Testing_Utils.listing_and_sorting(y_val)
+        
+        assert x_t_list == x_val_list
+        assert y_t_list == y_val_list
+        
 def test_val_classification():
     '''
     Function to test the val_classification function
