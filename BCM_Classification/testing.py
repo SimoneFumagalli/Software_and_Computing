@@ -142,6 +142,43 @@ def test_top_ten(modelling):
     for i in range(len(top_ten_labels)):
         assert (np.sum(top_ten_labels[i],0)[1]) == y_test.shape[1]
 
+def test_plot_params(modelling):
+    '''
+    Function to test the Metrics function.
+
+    Given:
+        classifier: array containing the weights and the predictions.
+        sorted_weights: weigths listed in descending order.
+        sorting_prediction: the array of prediction,corresponding to the x_predict
+                            position, is ordered in a descendent manner.
+        sorting_labels: labels corresponding to the prediction array are ordered
+                        descendently.
+    Expected:
+        nc is expected to be the highest values among all the weights present in
+        the classifier.
+        The prediction index used for the choice of the best label must correspond
+        to the highest value of prediction.
+        The label considered should be an index corresponding to the highest 
+        value present in the array considered.
+    '''
+    classifier = Classification.clf(modelling, x_train, x_test, y_train, y_test)
+    fitted_model, prediction = classifier
+    x_predict = 0
+    
+    nc, label, top_ten_label, best_result = Classification.plot_params(classifier, x_predict)
+    #Testing the nc value to be the highest possible
+    sorted_weights = Testing_Utils.reshaping_weights(classifier)    
+    assert nc == sorted_weights[0]
+
+    sorting_prediction, sorting_label = Testing_Utils.sorting(classifier, x_predict)
+    #Testing the index of prediction corresponding to the highest value of the array
+    #considered.
+    assert np.argmax(prediction[x_predict]) == sorting_prediction.index[0]
+    
+    #Testing the descendent order of the label
+    assert [sorting_label.values[i] >= sorting_label.values[i+1] for i in range(len(sorting_label) - 1)]
+    assert label == sorting_label.index[0]
+    
 def test_Metrics(modelling):
     '''
     Function to test the Metrics function.
