@@ -15,5 +15,5 @@ def ylabels(classifier):
 
 def top_10_labels(classifier):
     top_10 = Classification.top_ten(classifier)
-    ten_result = [top_10[x][0][1] for x in range(len(top_10))]
+    ten_result = [top_10[x][0][0] for x in range(len(top_10))]
     return ten_result
