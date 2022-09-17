@@ -22,5 +22,5 @@ def top_10_labels(classifier):
 def sorting(classifier, x_predict):
     fitted_model, prediction = classifier
     sorting_prediction = pd.Series(prediction[x_predict]).sort_values(ascending=False)
-    sorting_label = pd.Series(fitted_model[sorting_prediction][28*28:]).sort_values(ascending=False)
+    sorting_label = pd.Series(fitted_model[sorting_prediction.index[0]][28*28:]).sort_values(ascending=False)
     return sorting_prediction, sorting_label
