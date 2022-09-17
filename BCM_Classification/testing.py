@@ -211,6 +211,7 @@ def test_Metrics(modelling):
     accuracy_formula_10 = len(np.where(ten_result==y_true)[0])/len(ten_result)
     
     assert accuracy_formula_10 == accuracy_top_ten_label
+
 def test_checking_number_training():
     '''
     Function to test the checking_number_training function.
@@ -222,22 +223,17 @@ def test_checking_number_training():
     
     Expected:
         if clf_times is higher than the n_splits the exception error should occur.
-        if clf_times is lower or equal to n_splits the returned value should be 
-        the clf_times value.
     '''
-    clf_times =[4, 6, 8]
+    clf_times =[7, 8, 9]
     n_splits = 6
     x_train_val, x_test_val, y_train_val, y_test_val = Validation.val_sets(x_train, y_train, n_splits)
     n_split = getattr(Validation.val_sets, 'n_splits')
-    assert n_split == n_splits
+    assert n_split == len(x_train_val)
+    
     for i in range(len(clf_times)):
-        if clf_times[i] > n_split:
-            assert Exception("The number of times to operate the classification"
-                            " must be lower or equal to "
-                            "the number of splitting")
-            return None
-        else:
-            return clf_times      
+        with pytest.raises(Exception):
+            Validation.check_number_training(clf_times[i])
+
 
 def test_val_sets():
     '''
