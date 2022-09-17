@@ -6,6 +6,7 @@ Created on Sat Sep 17 10:42:16 2022
 """
 
 import numpy as np
+import pandas as pd
 import Classification
 
 def ylabels(classifier):
@@ -17,3 +18,9 @@ def top_10_labels(classifier):
     top_10 = Classification.top_ten(classifier)
     ten_result = [top_10[x][0][0] for x in range(len(top_10))]
     return ten_result
+
+def sorting(classifier, x_predict):
+    fitted_model, prediction = classifier
+    sorting_prediction = pd.Series(prediction[x_predict]).sort_values(ascending=False)
+    sorting_label = pd.Series(fitted_model[sorting_prediction][28*28:]).sort_values(ascending=False)
+    return sorting_prediction, sorting_label
