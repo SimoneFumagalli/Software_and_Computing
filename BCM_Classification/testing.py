@@ -22,6 +22,7 @@ sys.path.append(path)
 
 import Classification
 import Validation
+import Testing_Utils
 
 X, y = fetch_openml(name='mnist_784', version=1, data_id=None, return_X_y=True)
 
@@ -141,36 +142,38 @@ def test_top_ten(modelling):
     for i in range(len(top_ten_labels)):
         assert (np.sum(top_ten_labels[i],0)[1]) == y_test.shape[1]
 
-def test_Metrics():
+def test_Metrics(modelling):
     '''
     Function to test the Metrics function.
 
     Given:
+        y_true: list of test labels.
         accuracy_single_label: measured accuracy with labels obtained using 
                                just the best neuron
-        dictionary_single_label: output of the classification_report function 
-                                 using just the best neuron
         accuracy_top_ten_label: measured accuracy with labels obtained using 
                                 the survey of the top ten neurons
-        dictionary_top_ten_label: output of the classification_report function
-                                  using the survey of the top ten neurons
     Expected:
-        The accuracy_single_label and accuracy_top_ten_label should have the same
-        type, int
-        The dictionary_single_label and dictionary_top_ten_label should havet the
-        same type, str
+        The accuracy_single_label and accuracy_top_ten_label should be equal to
+        the value of accuracy obtained using the theoretical formula.
     '''
-    classifier = Classification.clf(model, x_train, x_test, y_train, y_test)
-    metric_single_label = Classification.Metrics(classifier, y_test, False)
-    accuracy_single_label, dictionary_single_label = metric_single_label
-    metric_top_ten_label = Classification.Metrics(classifier, y_test, False)
-    accuracy_top_ten_label, dictionary_top_ten_label = metric_top_ten_label
+    classifier = Classification.clf(modelling, x_train, x_test, y_train, y_test)
+    y_true = y_test.argmax(axis=1)
     
-    assert isinstance(accuracy_single_label, int) == \
-        isinstance(accuracy_top_ten_label, int)
-    assert isinstance(dictionary_single_label, str) == \
-        isinstance(dictionary_top_ten_label, str)
-
+    #Demonstrating that the output of the Metrics of the single labels
+    #correspond to the accuracy formula
+    accuracy_single = Classification.Metrics(classifier, y_test, False)[0]
+    y_lab = Testing_Utils.ylabels(classifier)
+    accuracy_formula = len(np.where(y_lab==y_true)[0])/len(y_lab)
+    
+    assert accuracy_formula == accuracy_single
+    
+    #Demonstrating that the output of the Metrics of the multiple labels
+    #correspond to the accuracy formula
+    accuracy_top_ten_label = Classification.Metrics(classifier, y_test, True)[0]
+    ten_result = Testing_Utils.top_10_labels(classifier)
+    accuracy_formula_10 = len(np.where(ten_result==y_true)[0])/len(ten_result)
+    
+    assert accuracy_formula_10 == accuracy_top_ten_label
 def test_checking_number_training():
     '''
     Function to test the checking_number_training function.
