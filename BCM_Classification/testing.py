@@ -34,13 +34,16 @@ def modelling():
                 activation='Relu', batch_size=60000)
     return model
 
-#Reshaping of the dataset
-X_norm, y_transform = Classification.Variable_Reshape(X, y)
-#Splitting of the dataset
-x_train, x_test, y_train, y_test = \
-train_test_split(X_norm, y_transform, test_size=1./8)
+@pytest.fixture
+def Variables():
+    #Reshaping of the dataset
+    X_norm, y_transform = Classification.Variable_Reshape(X, y)
+    #Splitting of the dataset
+    x_train, x_test, y_train, y_test = \
+    train_test_split(X_norm, y_transform, test_size=1./8)
+    return x_train,x_test,y_train,y_test
 
-def test_checking_batch_size(modelling):
+def test_checking_batch_size(modelling, Variables):
     '''
     Function to test the checking_batch_size function.
 
@@ -54,7 +57,7 @@ def test_checking_batch_size(modelling):
 
     '''
     assert isinstance(modelling.batch_size, int)
-    
+    y_train = Variables[2]
     modelling.batch_size = 70000
     check_batch = Classification.checking_batch_size(modelling, y_train)
     assert modelling.batch_size == len(y_train)
@@ -86,7 +89,7 @@ def test_Reshape():
     for i in range(10):
         assert np.where(y_transform[i] == 1.) == y_series[i]    
         
-def test_clf(modelling):
+def test_clf(modelling,Variables):
     '''
     Function to test the clf function that implements the BCM functions fit and predict.
     
@@ -106,6 +109,7 @@ def test_clf(modelling):
         Each prediction is composed by the result of the predict function for all the
         neuron and so the length of each prediction must correspond to the model.outputs
     '''
+    x_train, x_test, y_train, y_test = Variables
     classifier = Classification.clf(modelling, x_train, x_test, y_train, y_test)
     fitted_model, prediction = classifier
     
@@ -117,7 +121,7 @@ def test_clf(modelling):
     for i in range (len(y_test)):
         assert len(prediction[i]) == modelling.outputs
     
-def test_top_ten(modelling):
+def test_top_ten(modelling, Variables):
     '''
     Function to test the top_ten_labels function.
 
@@ -131,6 +135,7 @@ def test_top_ten(modelling):
         
     
     '''
+    x_train, x_test, y_train, y_test = Variables
     classifier = Classification.clf(modelling, x_train, x_test, y_train, y_test)
     top_ten_labels = Classification.top_ten(classifier)
         
@@ -142,7 +147,7 @@ def test_top_ten(modelling):
     for i in range(len(top_ten_labels)):
         assert (np.sum(top_ten_labels[i],0)[1]) == y_test.shape[1]
 
-def test_plot_params(modelling):
+def test_plot_params(modelling, Variables):
     '''
     Function to test the Metrics function.
 
@@ -161,6 +166,7 @@ def test_plot_params(modelling):
         The label considered should be an index corresponding to the highest 
         value present in the array considered.
     '''
+    x_train, x_test, y_train, y_test = Variables
     classifier = Classification.clf(modelling, x_train, x_test, y_train, y_test)
     fitted_model, prediction = classifier
     x_predict = 0
@@ -179,7 +185,7 @@ def test_plot_params(modelling):
     assert [sorting_label.values[i] >= sorting_label.values[i+1] for i in range(len(sorting_label) - 1)]
     assert label == sorting_label.index[0]
     
-def test_Metrics(modelling):
+def test_Metrics(modelling, Variables):
     '''
     Function to test the Metrics function.
 
@@ -193,6 +199,7 @@ def test_Metrics(modelling):
         The accuracy_single_label and accuracy_top_ten_label should be equal to
         the value of accuracy obtained using the theoretical formula.
     '''
+    x_train, x_test, y_train, y_test = Variables
     classifier = Classification.clf(modelling, x_train, x_test, y_train, y_test)
     y_true = y_test.argmax(axis=1)
     
@@ -212,7 +219,7 @@ def test_Metrics(modelling):
     
     assert accuracy_formula_10 == accuracy_top_ten_label
 
-def test_checking_number_training():
+def test_checking_number_training(Variables):
     '''
     Function to test the checking_number_training function.
 
@@ -224,6 +231,7 @@ def test_checking_number_training():
     Expected:
         if clf_times is higher than the n_splits the exception error should occur.
     '''
+    x_train, y_train = Variables[0], Variables[2]
     clf_times =[7, 8, 9]
     n_splits = 6
     x_train_val, x_test_val, y_train_val, y_test_val = Validation.val_sets(x_train, y_train, n_splits)
@@ -235,7 +243,7 @@ def test_checking_number_training():
             Validation.check_number_training(clf_times[i])
 
 
-def test_val_sets():
+def test_val_sets(Variables):
     '''
     Function to test the val_sets function.
     
@@ -255,6 +263,7 @@ def test_val_sets():
         set used for the splitting.
     '''
     n_splits = 4
+    x_train, y_train = Variables[0], Variables[2]
     x_train_val, x_test_val, y_train_val, y_test_val = Validation.val_sets(x_train, y_train, n_splits)
     
     
@@ -279,7 +288,7 @@ def test_val_sets():
         assert x_t_list == x_val_list
         assert y_t_list == y_val_list
         
-def test_val_classification(modelling):
+def test_val_classification(modelling, Variables):
     '''
     Function to test the val_classification function
 
@@ -302,6 +311,7 @@ def test_val_classification(modelling):
     '''
     n_splits = 4
     clf_times = 3
+    x_train, y_train = Variables[0], Variables[2]
     validation_sets = Validation.val_sets(x_train, y_train, n_splits)
     
     x_train_val, x_test_val, y_train_val, y_test_val = validation_sets
@@ -323,7 +333,7 @@ def test_val_classification(modelling):
         for k in range (len(predictions[i])):
             assert len(predictions[i][k]) == modelling.outputs
     
-def test_val_metrics(modelling):
+def test_val_metrics(modelling, Variables):
     '''
     Function to test the val_metrics function.
     
@@ -344,6 +354,7 @@ def test_val_metrics(modelling):
     '''
     n_splits = 8
     clf_times = 4
+    x_train, y_train = Variables[0], Variables[2]
     validation_sets= Validation.val_sets(x_train, y_train, n_splits)
     val_classifiers = Validation.val_classification(modelling, validation_sets, clf_times)
     val_single_label_metric = Validation.val_metrics(val_classifiers, validation_sets, False)
