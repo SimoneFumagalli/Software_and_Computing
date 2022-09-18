@@ -47,16 +47,7 @@ model = BCM(outputs=1000, num_epochs=20, optimizer=Adam(lr=4e-2),
             activation='Relu', batch_size=4000)
 ```
 
-Now, in order to obtain the configuration of the fitted neurons the `plot_view_weights` parameter of the `clf` function needs to be set on `True`.
-
-```python
-classifier = Classification.clf(model, x_train, x_test, y_train, y_test, True)
-```
-<div align = "center">
-<img src=https://github.com/SimoneFumagalli/Software_and_Computing/blob/main/BCM_Classification/Example/Classification/Plot_view_weights.png height = "600" width = "600">
-</div>
-
-In order to observe the comparison between the input images and the classification best results, the `plot_view_weights` must be `False` and the `plot_best_result` function must be invoked.
+In order to observe the comparison between the input images and the classification best results, the `clf` function must be used first and then the `plot_best_result` function must be invoked.
 ```python
 classifier = Classification.clf(model, x_train, x_test, y_train, y_test)
 
