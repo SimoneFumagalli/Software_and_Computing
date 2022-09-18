@@ -110,3 +110,35 @@ def listing_and_sorting(x):
     x_t_list = x.tolist()
     x_t_sort = x_t_list.sort()
     return x_t_sort
+
+def length_var(val_sets,clf_times:int):
+    '''
+    Function to consider a number of train and test sets according to the 
+    int clf_times.
+
+    Parameters
+    ----------
+    val_sets : array
+        Array of validation sets.
+    clf_times : int
+        Number indicating how many times the validation classification will be
+        performed.
+
+    Returns
+    -------
+    x_train_partial : array
+        Array containing the different sets of train, with dimension equal to clf_times.
+    x_test_partial : array
+        Array containing the different sets of test, with dimension equal to clf_times.
+    y_train_partial : array
+        Array containing the different sets of train, with dimension equal to clf_times.
+    y_test_partial : array
+        Array containing the different sets of test, with dimension equal to clf_times.
+
+    '''
+    x_train_,x_test_,y_train_,y_test_ = val_sets
+    x_train_partial = x_train_[0:clf_times]
+    x_test_partial = x_test_[0:clf_times]
+    y_train_partial = y_train_[0:clf_times]
+    y_test_partial = y_test_[0:clf_times]        
+    return x_train_partial,x_test_partial,y_train_partial,y_test_partial
