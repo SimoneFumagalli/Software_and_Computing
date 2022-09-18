@@ -323,7 +323,7 @@ def test_val_classification(modelling):
         for k in range (len(predictions[i])):
             assert len(predictions[i][k]) == modelling.outputs
     
-def test_val_metrics():
+def test_val_metrics(modelling):
     '''
     Function to test the val_metrics function.
     
@@ -332,20 +332,46 @@ def test_val_metrics():
         clf_times: int, number of times to operate the clf function
         validation_sets: output of val_sets function
         val_classifier: output of val_classification function
-        validation_metric: output of val_metric function
+        val_single_label_metric: output of val_metric function usign label in a
+                                single configuration
+        val_ten_label_metric: output of val_metric function using label in a 
+                              ten configuration
     Expected:
-        The length of validation_sets variable should be equal to clf_times
-        For each classification, the metrics is performed and it should return the
-        accuracy and classification__report. The length of the validation_metric
-        of each classification so should be equal to two
-        The first element of each metrics should be equal to a float type
+        The length of val_single_label_metric and val_ten_label_metric
+        should be equal to clf_times.
+        The expected output of the val_metric functions should correspond to the
+        general formula of the accuracy.
     '''
     n_splits = 8
     clf_times = 4
     validation_sets= Validation.val_sets(x_train, y_train, n_splits)
-    val_classifiers = Validation.val_classification(model, validation_sets, clf_times)
-    validation_metric = Validation.val_metrics(val_classifiers, validation_sets)
-    assert len(validation_metric) == clf_times
+    val_classifiers = Validation.val_classification(modelling, validation_sets, clf_times)
+    val_single_label_metric = Validation.val_metrics(val_classifiers, validation_sets, False)
+    val_ten_label_metric = Validation.val_metrics(val_classifiers, validation_sets, True)
+    assert len(val_single_label_metric) == clf_times
+    assert len(val_ten_label_metric) == clf_times
+    
+    #Testing the validation metrics using the single label configuration
+    single_label_accuracies = []
+    y_single_labs = []
+    y_true = []
     for i in range(clf_times):
-        assert len(validation_metric[i]) == 2
-        assert isinstance(validation_metric[i][0], float)
+        single_label_accuracies.append(val_single_label_metric[i][0])
+        
+        y_single_labs.append(Testing_Utils.ylabels(val_classifiers[i]))
+        
+        y_true.append(validation_sets[3][i].argmax(axis=1))
+        
+        accuracy_formula = len(np.where(y_single_labs[i]==y_true[i])[0])/len(y_single_labs[i])
+        assert accuracy_formula == single_label_accuracies[i]
+    
+    #Testing the validation metrics using the ten label configuration
+    ten_label_accuracies = []
+    y_ten_labs = []
+    for i in range(clf_times):
+        ten_label_accuracies.append(val_ten_label_metric[i][0])
+        
+        y_ten_labs.append(Testing_Utils.top_10_labels(val_classifiers[i]))
+        
+        accuracy_formula = len(np.where(y_ten_labs[i]==y_true[i])[0])/len(y_ten_labs[i])
+        assert accuracy_formula == ten_label_accuracies[i]
