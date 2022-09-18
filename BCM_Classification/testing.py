@@ -22,7 +22,7 @@ sys.path.append(path)
 
 import Classification
 import Validation
-import Testing_utils
+from Utils import Testing_utils
 
 X, y = fetch_openml(name='mnist_784', version=1, data_id=None, return_X_y=True)
 
