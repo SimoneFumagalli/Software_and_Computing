@@ -279,7 +279,49 @@ def test_val_sets():
         assert x_t_list == x_val_list
         assert y_t_list == y_val_list
         
+def test_val_classification(modelling):
+    '''
+    Function to test the val_classification function
 
+    Given:
+        clf_times: int, number of times to operate the clf function
+        x_train: set splitted to obtained the validation train and test set
+        y_train: set splitted to obtained the validation train and test set
+
+    Expected:
+        The number of times the classification is performed should be equal to
+        the clf_times
+        Each fitted_model created should have a number of elements equal to 
+        the outputs parameter.
+        Each of these elements should have a dimension equal to the sum the
+        dimension of train sets.
+        The length of the predictions should have the same dimensions of the test
+        labels.
+        Each element of the predictions should be equal have a number of elements
+        equal to the outputs parameter.
+    '''
+    n_splits = 4
+    clf_times = 3
+    validation_sets = Validation.val_sets(x_train, y_train, n_splits)
+    
+    x_train_val, x_test_val, y_train_val, y_test_val = validation_sets
+    x_train_partial, x_test_partial, y_train_partial,y_test_partial = \
+        Testing_Utils.length_var(validation_sets, clf_times)
+        
+    val_classifiers = Validation.val_classification(modelling, validation_sets, clf_times)    
+    assert len(val_classifiers) == clf_times
+    
+    fitted_models, predictions = [],[]
+    for i in range(clf_times):
+        fitted_models.append(val_classifiers[i][0]) 
+        predictions.append(val_classifiers[i][1])
+        assert len(fitted_models[i]) == modelling.outputs
+        assert [len(fitted_models[i][j]) == x_train_partial[i].shape[1] + y_train_partial[i].shape[1] \
+                                        for j in range (modelling.outputs)]
+
+        assert len(predictions[i]) == len(y_test_partial[i])
+        for k in range (len(predictions[i])):
+            assert len(predictions[i][k]) == modelling.outputs
     
 def test_val_metrics():
     '''
