@@ -51,7 +51,7 @@ def test_checking_batch_size(modelling, Variables):
         model: BCM model
         y_train: list of labels used for the training
     Expected:
-        When model.batch_size higher than the length of y_train, modl.batch_size
+        When model.batch_size is higher than the length of y_train, model.batch_size
         is reduced to be equal to the length of y_train
         If model.batch_size lower than the length of y_train, it doesn't change.
 
