@@ -247,6 +247,8 @@ def test_val_sets():
         n_splits: int indicating the times in which the training set is splitted
     Expected:
         The length of different sets should be equal to the number of splitting.
+        The created sets of x_train, x_test, y_train, y_test should have different
+        elements.
         The composition x_train_val and x_test_val sets should be equal to
         set used for the splitting.
         The composition y_train_val and y_test_val sets should be equal to
@@ -262,6 +264,12 @@ def test_val_sets():
     
     assert len(x_train_val) == len(x_test_val) == len(y_train_val) \
                                                       == len(y_test_val) == n_splits
+    for j in range(n_splits-1):
+        assert np.array_equal(x_train_val[j], x_train_val[j+1]) == False
+        assert np.array_equal(x_test_val[j], x_test_val[j+1]) == False
+        assert np.array_equal(y_train_val[j], y_train_val[j+1]) == False
+        assert np.array_equal(x_test_val[j], y_test_val[j+1]) == False
+        
     for i in range(n_splits):
         x_val = np.concatenate((x_train_val[i],x_test_val[i]))
         x_val_list = Testing_Utils.listing_and_sorting(x_val)
@@ -271,23 +279,7 @@ def test_val_sets():
         assert x_t_list == x_val_list
         assert y_t_list == y_val_list
         
-def test_val_classification():
-    '''
-    Function to test the val_classification function
 
-    Given:
-        clf_times: int, number of times to operate the clf function
-        classifiers: val_classification function outputs
-    Expected:
-        The number of times the classification is performed should be equal to
-        the clf_times
-    '''
-    n_splits = 4
-    clf_times = 3
-    validation_sets = Validation.val_sets(x_train, y_train, n_splits)
-    classifiers = Validation.val_classification(model, validation_sets, clf_times)
-        
-    assert len(classifiers) == clf_times
     
 def test_val_metrics():
     '''
