@@ -22,7 +22,7 @@ sys.path.append(path)
 
 import Classification
 import Validation
-import Testing_Utils
+import Testing_utils
 
 X, y = fetch_openml(name='mnist_784', version=1, data_id=None, return_X_y=True)
 
@@ -167,10 +167,10 @@ def test_plot_params(modelling):
     
     nc, label, top_ten_label, best_result = Classification.plot_params(classifier, x_predict)
     #Testing the nc value to be the highest possible
-    sorted_weights = Testing_Utils.reshaping_weights(classifier)    
+    sorted_weights = Testing_utils.reshaping_weights(classifier)    
     assert nc == sorted_weights[0]
 
-    sorting_prediction, sorting_label = Testing_Utils.sorting(classifier, x_predict)
+    sorting_prediction, sorting_label = Testing_utils.sorting(classifier, x_predict)
     #Testing the index of prediction corresponding to the highest value of the array
     #considered.
     assert np.argmax(prediction[x_predict]) == sorting_prediction.index[0]
@@ -199,7 +199,7 @@ def test_Metrics(modelling):
     #Demonstrating that the output of the Metrics of the single labels
     #correspond to the accuracy formula
     accuracy_single = Classification.Metrics(classifier, y_test, False)[0]
-    y_lab = Testing_Utils.ylabels(classifier)
+    y_lab = Testing_utils.ylabels(classifier)
     accuracy_formula = len(np.where(y_lab==y_true)[0])/len(y_lab)
     
     assert accuracy_formula == accuracy_single
@@ -207,7 +207,7 @@ def test_Metrics(modelling):
     #Demonstrating that the output of the Metrics of the multiple labels
     #correspond to the accuracy formula
     accuracy_top_ten_label = Classification.Metrics(classifier, y_test, True)[0]
-    ten_result = Testing_Utils.top_10_labels(classifier)
+    ten_result = Testing_utils.top_10_labels(classifier)
     accuracy_formula_10 = len(np.where(ten_result==y_true)[0])/len(ten_result)
     
     assert accuracy_formula_10 == accuracy_top_ten_label
@@ -259,8 +259,8 @@ def test_val_sets():
     
     
     x_train_ = x_train.values.reshape(61250,784)
-    x_t_list = Testing_Utils.listing_and_sorting(x_train_)
-    y_t_list = Testing_Utils.listing_and_sorting(y_train)
+    x_t_list = Testing_utils.listing_and_sorting(x_train_)
+    y_t_list = Testing_utils.listing_and_sorting(y_train)
     
     assert len(x_train_val) == len(x_test_val) == len(y_train_val) \
                                                       == len(y_test_val) == n_splits
@@ -272,9 +272,9 @@ def test_val_sets():
         
     for i in range(n_splits):
         x_val = np.concatenate((x_train_val[i],x_test_val[i]))
-        x_val_list = Testing_Utils.listing_and_sorting(x_val)
+        x_val_list = Testing_utils.listing_and_sorting(x_val)
         y_val = np.concatenate((y_train_val[i],y_test_val[i]))
-        y_val_list = Testing_Utils.listing_and_sorting(y_val)
+        y_val_list = Testing_utils.listing_and_sorting(y_val)
         
         assert x_t_list == x_val_list
         assert y_t_list == y_val_list
@@ -306,7 +306,7 @@ def test_val_classification(modelling):
     
     x_train_val, x_test_val, y_train_val, y_test_val = validation_sets
     x_train_partial, x_test_partial, y_train_partial,y_test_partial = \
-        Testing_Utils.length_var(validation_sets, clf_times)
+        Testing_utils.length_var(validation_sets, clf_times)
         
     val_classifiers = Validation.val_classification(modelling, validation_sets, clf_times)    
     assert len(val_classifiers) == clf_times
@@ -358,7 +358,7 @@ def test_val_metrics(modelling):
     for i in range(clf_times):
         single_label_accuracies.append(val_single_label_metric[i][0])
         
-        y_single_labs.append(Testing_Utils.ylabels(val_classifiers[i]))
+        y_single_labs.append(Testing_utils.ylabels(val_classifiers[i]))
         
         y_true.append(validation_sets[3][i].argmax(axis=1))
         
@@ -371,7 +371,7 @@ def test_val_metrics(modelling):
     for i in range(clf_times):
         ten_label_accuracies.append(val_ten_label_metric[i][0])
         
-        y_ten_labs.append(Testing_Utils.top_10_labels(val_classifiers[i]))
+        y_ten_labs.append(Testing_utils.top_10_labels(val_classifiers[i]))
         
         accuracy_formula = len(np.where(y_ten_labs[i]==y_true[i])[0])/len(y_ten_labs[i])
         assert accuracy_formula == ten_label_accuracies[i]
